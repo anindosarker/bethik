@@ -31,15 +31,15 @@ const TextSelection = () => {
             <div className="flex">
               <div
                 className={`${
-                  startIndex === index ? "bg-red-500" : ""
-                } h-8 w-8`}
+                  startIndex === index ? "bg-orange-500" : ""
+                } h-6 w-6 rounded-md px-1`}
               >
-                {startIndex === index ? "⇧" : ""}
+                {startIndex === index ? "↗️" : ""}
               </div>
               <div
-                className={`${endIndex === index ? "bg-red-500" : ""} h-8 w-8`}
+                className={`${endIndex === index ? "bg-orange-500" : ""} h-6 w-6 rounded-md px-1`}
               >
-                {endIndex === index ? "⇩" : ""}
+                {endIndex === index ? "↖️" : ""}
               </div>
             </div>
           </div>
