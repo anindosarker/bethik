@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .slider {
+    @apply relative w-[200px];
+  }
+  .slider__track,
+  .slider__range,
+  .slider__left-value,
+  .slider__right-value {
+    @apply absolute;
+  }
+  .slider__track,
+  .slider__range {
+    @apply h-[5px] rounded-[3px];
+  }
+  .slider__track {
+    @apply bg-[#ced4da] w-full z-[1];
+  }
+  .slider__range {
+    @apply bg-[#9fe5e1] z-[2];
+  }
+  .slider__left-value,
+  .slider__right-value {
+    @apply text-[#dee2e6] text-xs mt-5;
+  }
+  .slider__left-value {
+    @apply left-1.5;
+  }
+  .slider__right-value {
+    @apply -right-1;
+  }
+
+  /* Removing the default appearance */
+  .thumb,
+  .thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .thumb {
+    @apply pointer-events-none absolute h-0 w-[200px];
+    outline: none;
+  }
+  .thumb--zindex-3 {
+    @apply z-[3];
+  }
+  .thumb--zindex-4 {
+    @apply z-[4];
+  }
+  .thumb--zindex-5 {
+    @apply z-[5];
+  }
+
+  /* For Chrome browsers */
+  .thumb::-webkit-slider-thumb {
+    @apply bg-[#f1f5f7] shadow-[0_0_1px_1px_#ced4da] cursor-pointer h-[18px] w-[18px] relative mt-1 rounded-[50%] border-[none];
+    pointer-events: all;
+  }
+
+  /* For Firefox browsers */
+  .thumb::-moz-range-thumb {
+    @apply bg-[#f1f5f7] shadow-[0_0_1px_1px_#ced4da] cursor-pointer h-[18px] w-[18px] relative mt-1 rounded-[50%] border-[none];
+    pointer-events: all;
+  }
+}

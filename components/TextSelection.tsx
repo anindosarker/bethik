@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 
 const text = "আমার দেশের নাম, তুমি কি জানো?";
 
@@ -46,33 +47,25 @@ const TextSelection = () => {
     <div className="flex flex-col">
       <div className="text-lg">
         {text.slice(0, index.start)}
-        <span className="bg-red-500 text-white">{selectedText}</span>
+        <span className="bg-red-500 text-white">
+          {text.slice(index.start, index.end)}
+        </span>
         {text.slice(index.end)}
       </div>
       <div className="flex justify-between space-x-4 mt-4">
-        Start
-        <input
-          type="range"
+        <MultiRangeSlider
           min={0}
           max={text.length}
-          step={1}
-          value={index.start}
-          className=""
-          onChange={startIndexHandler}
+          onChange={({ min, max }) => {
+            setIndex({ start: min, end: max });
+          }}
         />
-        <input
-          type="range"
-          min={0}
-          max={text.length}
-          step={1}
-          value={index.end}
-          onChange={endIndexHandler}
-        />
-        End
       </div>
       <div className="mt-4 flex space-x-4">
         <div className="">Incorrect: </div>
-        <div className="border border-black">{selectedText}</div>
+        <div className="border border-black whitespace-pre	">
+          {text.slice(index.start, index.end)}
+        </div>
       </div>
     </div>
   );
