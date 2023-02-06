@@ -1,61 +1,37 @@
 import React, { useState } from "react";
 
 const TextSelection = () => {
-  const [text, setText] = useState("Sample text here");
-  const [startIndex, setStartIndex] = useState(-1);
-  const [endIndex, setEndIndex] = useState(-1);
-
-  const handleStartClick = (index) => {
-    setStartIndex(index);
-    setEndIndex(-1);
-  };
-
-  const handleEndClick = (index) => {
-    setEndIndex(index);
-  };
+  const [text, setText] = useState("Three fruits are: apples, mango, banana.");
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(0);
 
   return (
-    <div className="flex flex-col">
-      <div className="flex">
-        {text.split(" ").map((word, index) => (
-          <div
-            key={index}
-            className="flex-row items-center cursor-pointer"
-            onClick={() =>
-              startIndex === -1
-                ? handleStartClick(index)
-                : handleEndClick(index)
-            }
-          >
-            <div className="ml-2">{word}</div>
-            <div className="flex">
-              <div
-                className={`${
-                  startIndex === index ? "bg-orange-500" : ""
-                } h-6 w-6 rounded-md px-1`}
-              >
-                {startIndex === index ? "↗️" : ""}
-              </div>
-              <div
-                className={`${endIndex === index ? "bg-orange-500" : ""} h-6 w-6 rounded-md px-1`}
-              >
-                {endIndex === index ? "↖️" : ""}
-              </div>
-            </div>
-          </div>
-        ))}
+    <div>
+      <div className="flex flex-col">
+        {text}
+        <div className="flex justify-between space-x-4">
+          <input
+            type="range"
+            min={0}
+            max={text.length}
+            step={1}
+            value={startIndex}
+            onChange={(e) => setStartIndex(e.target.value)}
+          />{" "}
+          <br />
+          <input
+            type="range"
+            min={0}
+            max={text.length}
+            step={1}
+            value={endIndex}
+            onChange={(e) => setEndIndex(e.target.value)}
+          />
+        </div>
       </div>
 
-      <br />
-      <br />
       <div className="flex">
-        Selected Text:{" "}
-        {startIndex !== -1 &&
-          endIndex !== -1 &&
-          text
-            .split(" ")
-            .slice(startIndex, endIndex + 1)
-            .join(" ")}
+        Selected Text: {text.slice(startIndex, endIndex)}
       </div>
     </div>
   );
