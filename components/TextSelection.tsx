@@ -2,39 +2,61 @@ import React, { useState } from "react";
 
 const TextSelection = () => {
   const [text, setText] = useState("Sample text here");
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(0);
-  const [selectedText, setSelectedText] = useState("");
+  const [startIndex, setStartIndex] = useState(-1);
+  const [endIndex, setEndIndex] = useState(-1);
 
-  const handleSelection = (start, end) => {
-    setStartIndex(start);
-    setEndIndex(end);
-    setSelectedText(text.slice(start, end));
+  const handleStartClick = (index) => {
+    setStartIndex(index);
+    setEndIndex(-1);
+  };
+
+  const handleEndClick = (index) => {
+    setEndIndex(index);
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-xl">
-        {text.split("").map((char, index) => (
-          <span
+    <div className="flex flex-col">
+      <div className="flex">
+        {text.split(" ").map((word, index) => (
+          <div
             key={index}
-            className={
-              index >= startIndex && index < endIndex
-                ? "bg-gray-200"
-                : "bg-transparent"
+            className="flex-row items-center cursor-pointer"
+            onClick={() =>
+              startIndex === -1
+                ? handleStartClick(index)
+                : handleEndClick(index)
             }
-            onMouseDown={() => handleSelection(index, index + 1)}
-            onMouseOver={(event) => {
-              if (event.buttons === 1) {
-                handleSelection(startIndex, index + 1);
-              }
-            }}
           >
-            {char}
-          </span>
+            <div className="ml-2">{word}</div>
+            <div className="flex">
+              <div
+                className={`${
+                  startIndex === index ? "bg-red-500" : ""
+                } h-8 w-8`}
+              >
+                {startIndex === index ? "⇧" : ""}
+              </div>
+              <div
+                className={`${endIndex === index ? "bg-red-500" : ""} h-8 w-8`}
+              >
+                {endIndex === index ? "⇩" : ""}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
-      <div className="text-lg mt-4">Selected text: {selectedText}</div>
+
+      <br />
+      <br />
+      <div className="flex">
+        Selected Text:{" "}
+        {startIndex !== -1 &&
+          endIndex !== -1 &&
+          text
+            .split(" ")
+            .slice(startIndex, endIndex + 1)
+            .join(" ")}
+      </div>
     </div>
   );
 };
