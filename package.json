@@ -6,8 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "label-studio": "^1.0.1",
     "next": "latest",
+    "range-slider-input": "^2.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-range-slider-input": "^3.0.7"

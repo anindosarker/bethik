@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
+
 const text =
   "আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?";
 
 const TextSelection = () => {
-  const [selectedText, setSelectedText] = useState(text);
   const [index, setIndex] = useState({ start: 0, end: 0 });
 
   return (
@@ -19,12 +19,12 @@ const TextSelection = () => {
         {text.slice(index.end)}
       </div>
       <div className="flex justify-between space-x-4 mt-4">
-        <RangeSlider
-          id="range-slider"
+        <RangeSlider 
+          id="range-slider" 
           step={1}
           min={0}
           max={text.length}
-          onInput={(e) => {
+          onInput={(e: any) => {
             setIndex({
               start: e[0],
               end: e[1],
