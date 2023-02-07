@@ -4,7 +4,7 @@ import TextSelection from "../components/TextSelection";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center py-2 px-10">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
