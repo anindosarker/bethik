@@ -13,6 +13,10 @@ const TextSelection = () => {
   const [divRender, setDivRender] = useState([index]);
 
   const addDualDivsHandler = () => {
+    if (index.start === index.end) {
+      alert("Please select a text");
+      return;
+    }
     setDivRender([...divRender, index]);
   };
 
@@ -46,17 +50,16 @@ const TextSelection = () => {
         </div>
       </section>
 
+      {/* Render divs if the text is selected */}
+
       <section className="max-w-sm">
-        {
-          // do not render for the first time, skip the first instance.
-          divRender.slice(1).map((item, index) => {
-            return (
-              <div key={index}>
-                <Dualdivs selectedText={item.slicedText} />
-              </div>
-            );
-          })
-        }
+        {divRender.slice(1).map((item, index) => {
+          return (
+            <div key={index}>
+              <Dualdivs selectedText={item.slicedText} />
+            </div>
+          );
+        })}
       </section>
 
       <div className="flex justify-center">
