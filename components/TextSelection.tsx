@@ -25,6 +25,14 @@ function TextSelection() {
   >([]);
 
   const handleClick = (index: number) => {
+    if (
+      storedCorrections.some(
+        (correction) => correction.start <= index && correction.end >= index
+      )
+    ) {
+      return;
+    }
+
     let start = selectedRange?.start;
     let end = selectedRange?.end;
     if (start === undefined || end === undefined) {
@@ -58,13 +66,25 @@ function TextSelection() {
           },
         ];
       });
-      resetHandler();
+      divReset();
     }
 
     console.log("storedCorrection", storedCorrections);
+
+    //generate new text with corrections
+    let newText = text.split(" ");
+    storedCorrections.forEach((correction) => {
+      newText.splice(
+        correction.start,
+        correction.end - correction.start + 1,
+        correction.correctedText
+      );
+    });
+
+    console.log("newText", newText.join(" "));
   };
 
-  const resetHandler = () => {
+  const divReset = () => {
     setSelectedRange(undefined);
     setSelectedWords([]);
   };
@@ -85,7 +105,7 @@ function TextSelection() {
         <Dualdivs
           selectedText={selectedWords}
           correctionHandler={correctionHandler}
-          resetHandler={resetHandler}
+          resetHandler={divReset}
         />
       </div>
     </div>
