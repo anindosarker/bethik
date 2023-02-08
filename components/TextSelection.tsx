@@ -4,25 +4,26 @@ import "react-range-slider-input/dist/style.css";
 import adf from "./Dualdivs";
 import Dualdivs from "./Dualdivs";
 import { timeStamp } from "console";
+import CorrectedText from "./CorrectedText";
 
 const text =
   "আমার দেশের নাম, তুমি কি জানো? ২০১৪ সালের ৫ই জানুয়ারির আগ পর্যন্ত তাই ছিল অঘোষিত নিয়ম। মুসলমানরা তিনটি প্রদেশে সংখ্যাগরিষ্ঠ হলেও সামগ্রিকভাবে ভারতে তারা সংখ্যালঘু।";
 
 const TextSelection = () => {
   const [index, setIndex] = useState({ start: 0, end: 0, slicedText: "" });
-  const [divRender, setDivRender] = useState([index]);
+  const [divRender, setDivRender] = useState([{ index, correctText: "" }]);
 
-  const addDualDivsHandler = () => {
+  const addDualDivsHandler = (e) => {
     if (index.start === index.end) {
       alert("Please select a text");
       return;
     }
-    setDivRender([...divRender, index]);
+    setDivRender([{ ...divRender, index, correctText: e.target.value }]);
   };
 
   const removeDualDivHandler = (removeIndex: number) => {
     const updatedDivRender = divRender.filter(
-      (item, index) => index !== removeIndex+1
+      (item, index) => index !== removeIndex + 1
     );
 
     setDivRender(updatedDivRender);
@@ -86,6 +87,8 @@ const TextSelection = () => {
           Add selection
         </button>
       </div>
+
+      <CorrectedText text={text} indexArray={divRender} />
     </div>
   );
 };
