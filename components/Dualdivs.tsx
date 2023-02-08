@@ -10,7 +10,7 @@ function Dualdivs({ selectedText }: Props) {
       <section>
         {/* Incorrect */}
         <div className="">Incorrect: </div>
-        <div className="border-2 border-red-500 whitespace-pre-wrap rounded-xl">
+        <div className="border-2 border-red-500 whitespace-pre-wrap rounded-xl px-2">
           {selectedText}
         </div>
       </section>
@@ -19,7 +19,7 @@ function Dualdivs({ selectedText }: Props) {
         {/* Correct */}
         <div className="">Correct: </div>
         <textarea
-          className="w-full border-2 border-green-500 whitespace-pre-wrap rounded-xl"
+          className="w-full border-2 border-green-500 whitespace-pre-wrap rounded-xl px-2"
           defaultValue={selectedText}
         />
       </section>

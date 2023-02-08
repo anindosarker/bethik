@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
+import adf from "./Dualdivs";
 import Dualdivs from "./Dualdivs";
+import { timeStamp } from "console";
 
 const text =
   "আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?আমার দেশের নাম, তুমি কি জানো?";
 
 const TextSelection = () => {
-  const [index, setIndex] = useState({ start: 0, end: 0 });
+  const [index, setIndex] = useState({ start: 0, end: 0, slicedText: "" });
+  const [divRender, setDivRender] = useState([index]);
+
+  const addDualDivsHandler = () => {
+    setDivRender([...divRender, index]);
+  };
 
   return (
     <div className="flex flex-col">
@@ -32,20 +39,32 @@ const TextSelection = () => {
               setIndex({
                 start: e[0],
                 end: e[1],
+                slicedText: text.slice(index.start, index.end),
               });
             }}
           />
         </div>
       </section>
 
-      {/* DualDivs: Text Display with highlighted selection */}
       <section className="max-w-sm">
-        <Dualdivs selectedText={text.slice(index.start, index.end)} />
+        {
+          // do not render for the first time, skip the first instance.
+          divRender.slice(1).map((item, index) => {
+            return (
+              <div key={index}>
+                <Dualdivs selectedText={item.slicedText} />
+              </div>
+            );
+          })
+        }
       </section>
 
       <div className="flex justify-center">
-        <button className="bg-blue-500 rounded-3xl text-white w-1/2 p-2">
-          Add another +
+        <button
+          className="bg-blue-500 rounded-3xl text-white w-1/2 p-2"
+          onClick={addDualDivsHandler}
+        >
+          Add selection
         </button>
       </div>
     </div>
