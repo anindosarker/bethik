@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
-import adf from "./Dualdivs";
 import Dualdivs from "./Dualdivs";
-import { timeStamp } from "console";
 import CorrectedText from "./CorrectedText";
 
 const text =
@@ -11,14 +9,14 @@ const text =
 
 const TextSelection = () => {
   const [index, setIndex] = useState({ start: 0, end: 0, slicedText: "" });
-  const [divRender, setDivRender] = useState([{ index, correctText: "" }]);
+  const [divRender, setDivRender] = useState([index]);
 
-  const addDualDivsHandler = (e) => {
+  const addDualDivsHandler = () => {
     if (index.start === index.end) {
       alert("Please select a text");
       return;
     }
-    setDivRender([{ ...divRender, index, correctText: e.target.value }]);
+    setDivRender([...divRender, index]);
   };
 
   const removeDualDivHandler = (removeIndex: number) => {
