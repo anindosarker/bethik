@@ -20,6 +20,14 @@ const TextSelection = () => {
     setDivRender([...divRender, index]);
   };
 
+  const removeDualDivHandler = (removeIndex: number) => {
+    const updatedDivRender = divRender.filter(
+      (item, index) => index !== removeIndex+1
+    );
+
+    setDivRender(updatedDivRender);
+    console.log(updatedDivRender);
+  };
   return (
     <div className="flex flex-col">
       <section className="text-lg max-w-sm">
@@ -55,8 +63,16 @@ const TextSelection = () => {
       <section className="max-w-sm">
         {divRender.slice(1).map((item, index) => {
           return (
-            <div key={index}>
+            <div className="flex bg-slate-200 rounded-2xl p-4 my-2" key={index}>
               <Dualdivs selectedText={item.slicedText} />
+              <div className="flex flex-col px-4 justify-center">
+                <button
+                  className="bg-red-500 rounded-3xl text-white h-10 w-20 p-2"
+                  onClick={() => removeDualDivHandler(index)}
+                >
+                  X
+                </button>
+              </div>
             </div>
           );
         })}
