@@ -15,14 +15,7 @@ function Dualdivs({ selectedText }: Props) {
         </div>
       </section>
 
-      <section>
-        {/* Correct */}
-        <div className="">Correct: </div>
-        <textarea
-          className="w-full border-2 border-green-500 whitespace-pre-wrap rounded-xl px-2"
-          defaultValue={selectedText}
-        />
-      </section>
+     
     </div>
   );
 }
