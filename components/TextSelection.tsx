@@ -11,12 +11,21 @@ const TextSelection = () => {
   const [index, setIndex] = useState({ start: 0, end: 0, slicedText: "" });
   const [divRender, setDivRender] = useState([index]);
 
+  const rangeSliderInputHandler = (e: any) => {
+    setIndex({
+      start: e[0],
+      end: e[1],
+      slicedText: text.slice(index.start, index.end),
+    });
+  };
+
   const addDualDivsHandler = () => {
     if (index.start === index.end) {
       alert("Please select a text");
       return;
     }
-    setDivRender([...divRender, index]);
+    console.log(divRender);
+    setDivRender((prevDivRender) => [...prevDivRender, index]);
   };
 
   const removeDualDivHandler = (removeIndex: number) => {
@@ -46,13 +55,7 @@ const TextSelection = () => {
             step={1}
             min={0}
             max={text.length}
-            onInput={(e: any) => {
-              setIndex({
-                start: e[0],
-                end: e[1],
-                slicedText: text.slice(index.start, index.end),
-              });
-            }}
+            onInput={rangeSliderInputHandler}
           />
         </div>
       </section>
