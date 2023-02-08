@@ -1,10 +1,18 @@
-Scrap the whole idea. I need to redo the text selection component again. This time, make every word and puncuation character selectable. If I click on it, it will show on the dualdivs component. 
+This is ano banana andthat isapple
+This is $ano${a} banana $andthat${and that} isapple
 
-Constrains: 
-1. "This is a banana"
-    I can click on "this", "is" like that. Sequencial. But I cannot select "this" , "banana" while skipping "is", "a"
+This is ano banana andthat isapple
+This is ano banana andthat isapple
 
-2. Once I've selected and corrected it, I want to show the corrected output to the user. After correcting one, I cannot select overlapping words.
-    Example: "This is aban ana". If I select "aban", "ana" and correct it, Then I can't select "is", "aban". 
+This is a banana and that is apple
 
-3. Store evrey words and their corresponding corrected word with the indexes  
+
+
+
+This p
+is p
+ano -> 
+ban
+ana 
+andthat 
+isapple

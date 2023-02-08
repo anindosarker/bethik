@@ -81,7 +81,10 @@ function TextSelection() {
       );
     });
 
-    console.log("newText", newText.join(" "));
+    //combine the array with the new corrections from the text, calculate the indexes properly
+
+
+    // console.log("newText", newText.join(" "));
   };
 
   const divReset = () => {
