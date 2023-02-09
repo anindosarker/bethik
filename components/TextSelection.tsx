@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dualdivs from "./Dualdivs";
 import { start } from "repl";
+import CorrectedText from "./CorrectedText";
 
 const text =
   "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত  তাই ছিল অঘোষিত নিয়ম।";
@@ -71,19 +72,17 @@ function TextSelection() {
 
     console.log("storedCorrection", storedCorrections);
 
-    //generate new text with corrections
-    let newText = text.split(" ");
-    storedCorrections.forEach((correction) => {
-      newText.splice(
-        correction.start,
-        correction.end - correction.start + 1,
-        correction.correctedText
-      );
+    newTextHandler(storedCorrections);
+  };
+
+  const newTextHandler = (words: any) => {
+    let newText = text;
+    words.forEach((word: any) => {
+      newText = newText.replace(word.incorrectText, word.correctedText);
     });
 
-    //combine the array with the new corrections from the text, calculate the indexes properly
-
-    console.log("newText", newText.join(" "));
+    console.log("newText", newText);
+    return newText;
   };
 
   const divReset = () => {
@@ -130,6 +129,7 @@ function TextSelection() {
           resetHandler={divReset}
         />
       </div>
+      <CorrectedText words={storedCorrections} originalText={text} />
     </div>
   );
 }
