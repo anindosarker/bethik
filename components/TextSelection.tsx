@@ -108,7 +108,7 @@ function TextSelection() {
   return (
     <div className="flex flex-col items-center">
       {/* Display Original Text */}
-      <div className="text-xl">
+      <div className="text-xl ">
         {text.split(" ").map((word, index) => (
           <span
             key={index}

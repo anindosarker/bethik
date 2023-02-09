@@ -18,9 +18,19 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
       <section>
         {/* Incorrect */}
         <div className="">Incorrect: </div>
-        <div className="border-2 border-red-500 whitespace-pre-wrap rounded-xl px-2">
-          {selectedText}
-        </div>
+
+        {selectedText.length ? (
+          <div
+            className="border-2 border-red-500 whitespace-pre-wrap rounded-xl px-2"
+            placeholder="Select words by clicking"
+          >
+            {selectedText}
+          </div>
+        ) : (
+          <div className="text-sm text-gray-500">
+            "Select words by clicking"
+          </div>
+        )}
       </section>
 
       <section>
