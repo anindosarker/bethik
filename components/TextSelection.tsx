@@ -93,7 +93,7 @@ function TextSelection() {
   };
 
   return (
-    <div className="flex flex-col items-center px-10  max-w-xl">
+    <div className="flex flex-col items-center px-10">
       {/* Display Original Text */}
       <div className="text-xl">
         {text.split(" ").map((word, index) => (
@@ -110,14 +110,14 @@ function TextSelection() {
         ))}
       </div>
       {/* Display clicked words */}
-      <div>
+      <div className="container mt-4">
         <Dualdivs
           selectedText={selectedWords}
           correctionHandler={correctionHandler}
           resetHandler={divReset}
         />
-      </div>
       <CorrectedText words={storedCorrections} originalText={text} />
+      </div>
     </div>
   );
 }

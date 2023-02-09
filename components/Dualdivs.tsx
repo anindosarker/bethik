@@ -14,14 +14,14 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
   }, [selectedText]);
 
   return (
-    <div className="flex flex-col w-full space-y-4">
+    <div className="flex flex-col  space-y-4">
       <section className="flex justify-between items-center space-x-4">
         {/* Incorrect */}
         <div className="">Incorrect: </div>
 
-        <div className="text-sm">
+        <div className="">
           {selectedText.length ? (
-            <div className="border-2 border-red-500 whitespace-pre-wrap rounded-xl px-2">
+            <div className="border-2 border-red-50 bg-red-50 whitespace-pre-wrap rounded-xl px-4 text-red-500">
               {selectedText.join(" ")}
             </div>
           ) : (
@@ -59,7 +59,7 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
         {/* Correct */}
         <div className="">Correct: </div>
         <input
-          className="border-2 border-blue-500 whitespace-pre-wrap rounded-xl px-2"
+          className="border-2 border-green-500 bg-green-50 text-green-900 whitespace-pre-wrap rounded-xl px-2"
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
@@ -72,6 +72,7 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
             setInputValue("");
           }}
         >
+          {" "}
           Save
           <svg
             width="24"
