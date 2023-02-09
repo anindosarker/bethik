@@ -11,19 +11,17 @@ function CorrectedText({ words, originalText }: Props) {
     words.forEach((word: any) => {
       newText = newText.replace(word.incorrectText, word.correctedText);
     });
-
-    console.log("newText", newText);
     return newText;
   };
 
   const text = newTextHandler(words);
 
   return (
-    <div className="flex-col space-y-4 p-4 bg-slate-100 rounded-xl mt-4"> 
+    <div className="flex-col space-y-4 p-4 bg-slate-100 rounded-xl mt-4">
       <h2 className="text-3xl">New Text</h2>
-       <div className="text-sm text-gray-500">
-            Replaced words are highlighted in yellow
-          </div>
+      <div className="text-sm text-gray-500">
+        Replaced words are highlighted in yellow
+      </div>
       <div className="text-xl border border-green-600 p-4 rounded-full bg-green-200">
         {text.split(" ").map((word, index) => (
           <span

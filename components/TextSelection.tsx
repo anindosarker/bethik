@@ -4,7 +4,7 @@ import { start } from "repl";
 import CorrectedText from "./CorrectedText";
 
 const text =
-  "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত  তাই ছিল অঘোষিত নিয়ম।";
+  "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত তাই ছিল অঘোষিত নিয়ম।";
 
 function TextSelection() {
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
@@ -71,18 +71,6 @@ function TextSelection() {
     }
 
     console.log("storedCorrection", storedCorrections);
-
-    newTextHandler(storedCorrections);
-  };
-
-  const newTextHandler = (words: any) => {
-    let newText = text;
-    words.forEach((word: any) => {
-      newText = newText.replace(word.incorrectText, word.correctedText);
-    });
-
-    console.log("newText", newText);
-    return newText;
   };
 
   const divReset = () => {
@@ -105,9 +93,9 @@ function TextSelection() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center px-10  max-w-xl">
       {/* Display Original Text */}
-      <div className="text-xl ">
+      <div className="text-xl">
         {text.split(" ").map((word, index) => (
           <span
             key={index}
