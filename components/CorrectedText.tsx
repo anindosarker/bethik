@@ -40,6 +40,7 @@ function CorrectedText({ divRender }: Props) {
         );
       })
       }
+
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Dualdivs from "./Dualdivs";
 import { start } from "repl";
 
 const text =
-  "আমার দেশের নাম, তুমি কি জানো?২০১৪ সালের ৫ই জানুয়ারির আগ পর্যন্ত তাই ছিল অঘোষিত নিয়ম।";
+  "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত  তাই ছিল অঘোষিত নিয়ম।";
 
 function TextSelection() {
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
@@ -83,8 +83,7 @@ function TextSelection() {
 
     //combine the array with the new corrections from the text, calculate the indexes properly
 
-
-    // console.log("newText", newText.join(" "));
+    console.log("newText", newText.join(" "));
   };
 
   const divReset = () => {
@@ -92,17 +91,37 @@ function TextSelection() {
     setSelectedWords([]);
   };
 
+  const highlightText = (index: number, word: string) => {
+    if (
+      storedCorrections.some(
+        (correction) => correction.start <= index && correction.end >= index
+      )
+    ) {
+      return "bg-green-500 text-white";
+    } else if (selectedWords.includes(word)) {
+      return "bg-red-500 text-white";
+    } else {
+      return "bg-gray-200";
+    }
+  };
+
   return (
-    <div>
+    <div className="flex flex-col items-center">
       {/* Display Original Text */}
-      <div>
+      <div className="text-xl">
         {text.split(" ").map((word, index) => (
-          <span key={index} onClick={() => handleClick(index)}>
+          <span
+            key={index}
+            className={`inline-block p-2 m-2 rounded ${highlightText(
+              index,
+              word
+            )}`}
+            onClick={() => handleClick(index)}
+          >
             {word}{" "}
           </span>
         ))}
       </div>
-
       {/* Display clicked words */}
       <div>
         <Dualdivs
