@@ -1,23 +1,29 @@
-import React from "react";
-import Word from "./Word";
+import React, { useState } from "react";
 
 interface OriginalTextProps {
   text: string;
-  highlightText: (index: number, word: string) => string;
   handleClick: (index: number) => void;
+  highlightText: (index: number, word: string) => string;
 }
 
-const OriginalText = (props: OriginalTextProps) => {
+const OriginalText: React.FC<OriginalTextProps> = ({
+  text,
+  handleClick,
+  highlightText,
+}) => {
   return (
     <div className="text-xl">
-      {props.text.split(" ").map((word, index) => (
-        <Word
+      {text.split(" ").map((word, index) => (
+        <span
           key={index}
-          word={word}
-          index={index}
-          highlightText={props.highlightText}
-          handleClick={props.handleClick}
-        />
+          className={`inline-block p-2 m-2 rounded ${highlightText(
+            index,
+            word
+          )}`}
+          onClick={() => handleClick(index)}
+        >
+          {word}{" "}
+        </span>
       ))}
     </div>
   );
