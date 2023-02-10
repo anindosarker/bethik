@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import TextSelection from "../components/TextSelection";
+import TextSelection from "../components/Text/TextSelection";
 import CSVReader from "../components/Util/CSVReader";
-import SentenceCount from "../components/SentenceCount";
+import SentenceCount from "../components/Text/SentenceCount";
 
 const Home: NextPage = () => {
   return (
@@ -12,10 +12,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <TextSelection />
-        <SentenceCount />
-
-      </div>
+      <TextSelection />
+      <SentenceCount />
+    </div>
   );
 };
 
