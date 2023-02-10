@@ -6,10 +6,20 @@ type Props = {
 };
 
 function CorrectedText({ words, originalText }: Props) {
+  const highlightText = (words: any, word: string) => {
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].correctedText === word) {
+        return "bg-yellow-200";
+      }
+    }
+    return "";
+  };
+
   const newTextHandler = (words: any) => {
     let newText = originalText;
     words.forEach((word: any) => {
       newText = newText.replace(word.incorrectText, word.correctedText);
+      // newText = newText.replace(word.incorrectText, `$${word.incorrectText}$\{${word.correctedText}\}`);
     });
     return newText;
   };
@@ -34,15 +44,6 @@ function CorrectedText({ words, originalText }: Props) {
       </div>
     </div>
   );
-}
-
-function highlightText(words: any, word: string) {
-  for (let i = 0; i < words.length; i++) {
-    if (words[i].correctedText === word) {
-      return "bg-yellow-200";
-    }
-  }
-  return "";
 }
 
 export default CorrectedText;

@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import TextSelection from "../components/TextSelection";
 import CSVReader from "../components/Util/CSVReader";
+import SentenceCount from "../components/SentenceCount";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
       </Head>
 
         <TextSelection />
+        <SentenceCount />
 
       </div>
   );
