@@ -5,6 +5,7 @@ import {
   lightenDarkenColor,
   formatFileSize,
 } from "react-papaparse";
+import DisCsvData from "../DisCsvData";
 
 const GREY = "#CCC";
 const GREY_LIGHT = "rgba(255, 255, 255, 0.4)";
@@ -86,6 +87,9 @@ export default function CSVReader() {
     DEFAULT_REMOVE_HOVER_COLOR
   );
 
+  const [csvData, setCsvData] = useState<any>({});
+
+
   return (
     <CSVReader
       onUploadAccepted={(results: any) => {
@@ -93,6 +97,7 @@ export default function CSVReader() {
         console.log(results);
         console.log("---------------------------");
         setZoneHover(false);
+        setCsvData(results.data);
       }}
       onDragOver={(event: DragEvent) => {
         event.preventDefault();
@@ -147,6 +152,7 @@ export default function CSVReader() {
                     <Remove color={removeHoverColor} />
                   </div>
                 </div>
+                <DisCsvData csvData={csvData} />
               </>
             ) : (
               "Click to upload"

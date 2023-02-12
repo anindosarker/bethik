@@ -118,6 +118,11 @@ function TextSelection() {
         />
       <CorrectedText words={storedCorrections} originalText={text} />
       </div>
+
+      
+      <div className="text-xs mt-4">
+        <pre>{JSON.stringify(storedCorrections, null, 2)}</pre>
+      </div>
     </div>
   );
 }

@@ -4,13 +4,13 @@ type Props = {
   userId: string;
 };
 
-const SentenceCount: React.FC<Props> = ({ userId }) => {
+const SentenceCount = () => {
   const [count, setCount] = useState(2);
 
   useEffect(() => {
     // Fetch the count of corrected sentences for the user from your database
     // and update the state using setCount
-  }, [userId]);
+  }, []);
 
 
   return (
