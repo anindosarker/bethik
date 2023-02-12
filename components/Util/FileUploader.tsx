@@ -10,7 +10,6 @@ function FileUploader() {
     setFile(event.target.files[0]);
   };
 
-  
   const handleUpload: React.ChangeEventHandler<HTMLButtonElement> = async (
     event
   ) => {
@@ -25,7 +24,7 @@ function FileUploader() {
 
       const { data, error: uploadError } = await supabase.storage
         .from("public/csvfiles")
-        .upload(filePath, file, {upsert: true });
+        .upload(filePath, file, { cacheControl: "3600", upsert: false});
 
       if (uploadError) {
         throw uploadError;
