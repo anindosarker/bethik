@@ -5,7 +5,6 @@ import {
   lightenDarkenColor,
   formatFileSize,
 } from "react-papaparse";
-import DisCsvData from "../DisCsvData";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { toast } from "react-hot-toast";
 

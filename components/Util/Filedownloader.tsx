@@ -3,16 +3,14 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 function FileDownloader() {
   const supabase = useSupabaseClient();
-  const [sentences, setSentences] = useState();
+  const [sentences, setSentences] = useState<[] | null>(null);
 
   useEffect(() => {
     const getAll = async () => {
       try {
-        const { data, error } = await supabase
-          .from("sentences")
-          .select("*");
-        setSentences(data);
-      } catch (error) {                
+        const { data, error } = await supabase.from("sentences").select("*");
+        setSentences(data as []);
+      } catch (error) {
         console.log("error", error);
       }
     };
