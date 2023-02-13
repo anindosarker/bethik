@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Sidebar from "../../components/Dash/Sidebar";
 import CSVReader from "../../components/Util/CSVReader";
-import Filedownloader from "../../components/Util/Filedownloader";
 
 export default function dashboard() {
   return (
@@ -13,9 +12,6 @@ export default function dashboard() {
         <div className="">
           <CSVReader />
         </div>
-        <button className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4">
-          Download{" "}
-        </button>
       </div>
     </div>
   );
