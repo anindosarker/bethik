@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dualdivs from "./Dualdivs";
 import { start } from "repl";
 import CorrectedText from "./CorrectedText";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { newTextHandler } from "../Util/newTextHelper";
 
-const text =
-  "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত তাই ছিল অঘোষিত নিয়ম।";
+// const text =
+//   "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত তাই ছিল অঘোষিত নিয়ম।";
 
 function TextSelection() {
+  //states
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [selectedRange, setSelectedRange] = useState<
     | {
@@ -24,6 +27,50 @@ function TextSelection() {
       end: number;
     }[]
   >([]);
+
+  //TODO: queries
+  //get one sentence from the database
+  const supabase = useSupabaseClient();
+  const [text, setText] = useState("");
+  const [oneData, setOneData] = useState([]);
+  
+  const getOne = async () => {
+    try {
+      const { data: getOneData, error } = await supabase
+        .from("sentences")
+        .select("*")
+        .limit(1)
+        .eq("is_checked", false);
+      setText(getOneData[0].incorrect_text);
+      setOneData(getOneData[0]);
+      console.log("OneData id", oneData.id);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  useEffect(() => {
+    getOne();
+  }, []);
+
+  //function to send data to the backend
+  const sendData = async () => {
+    try {
+      const { data: updateOneData, error } = await supabase
+        .from("sentences")
+        .update({
+          incorrect_text: text,
+          correct_text: newTextHandler(storedCorrections, text).newText,
+          is_checked: true,
+          index: storedCorrections
+        })
+        .eq("id", oneData.id);
+      console.log("updateOneData", updateOneData);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  //functions
 
   const handleClick = (index: number) => {
     if (
@@ -116,11 +163,17 @@ function TextSelection() {
           correctionHandler={correctionHandler}
           resetHandler={divReset}
         />
-      <CorrectedText words={storedCorrections} originalText={text} />
+        <CorrectedText words={storedCorrections} originalText={text} />
       </div>
 
-      
       <div className="text-xs mt-4">
+        <button
+          className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4"
+          onClick={sendData}
+        >
+          Send{" "}
+        </button>
+
         <pre>{JSON.stringify(storedCorrections, null, 2)}</pre>
       </div>
     </div>

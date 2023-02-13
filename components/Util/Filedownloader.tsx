@@ -10,6 +10,8 @@ function FileDownloader() {
       try {
         const { data, error } = await supabase.from("sentences").select("*");
         setSentences(data as []);
+        console.log("data", data);
+        
       } catch (error) {
         console.log("error", error);
       }

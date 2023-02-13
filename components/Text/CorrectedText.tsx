@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { newTextHandler } from "../Util/newTextHelper";
 
 type Props = {
   words: any;
@@ -15,16 +16,9 @@ function CorrectedText({ words, originalText }: Props) {
     return "";
   };
 
-  const newTextHandler = (words: any) => {
-    let newText = originalText;
-    words.forEach((word: any) => {
-      // newText = newText.replace(word.incorrectText, word.correctedText);
-      newText = newText.replace(word.incorrectText, `$${word.incorrectText}$\{${word.correctedText}\}`);
-    });
-    return newText;
-  };
+  
 
-  const text = newTextHandler(words);
+  const text = newTextHandler(words, originalText).newTextHiglighted;
 
   return (
     <div className="flex-col space-y-4 p-4 bg-slate-100 rounded-xl mt-10">
