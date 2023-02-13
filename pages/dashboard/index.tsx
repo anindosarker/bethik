@@ -6,28 +6,8 @@ import Filedownloader from "../../components/Util/Filedownloader";
 import FileUploader from "../../components/Util/FileUploader";
 
 export default function dashboard() {
-  const supabase = useSupabaseClient();
+ ;
 
-  useEffect(() => {
-    async function insertReq() {
-      try {
-        const { data, error } = await supabase
-          .from("sentences")
-          .insert([
-            { incorrect_text: "someValue" },
-            { incorrect_text: "otherValue" },
-          ]);
-
-        if (error) {
-          throw error;
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    }
-
-    insertReq();
-  }, [supabase]);
   return (
     <div className="grid m-auto grid-cols-6 gap-4">
       <div className="container col-span-1">
@@ -42,21 +22,10 @@ export default function dashboard() {
         </button>
 
         <div>
-          <h1>Supabase storage upload</h1>
-          <div className="flex flex-col bg-gray-400">
-            <h2>download works</h2>
-
-            <Filedownloader />
-          </div>
-
-          <p>Upload a file to the public bucket</p>
-
-          <FileUploader />
+         <Filedownloader />
         </div>
       </div>
-      <button className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4">
-        Insert{" "}
-      </button>
+     
     </div>
   );
 }

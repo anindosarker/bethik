@@ -6,6 +6,8 @@ import {
   formatFileSize,
 } from "react-papaparse";
 import DisCsvData from "../DisCsvData";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { toast } from "react-hot-toast";
 
 const GREY = "#CCC";
 const GREY_LIGHT = "rgba(255, 255, 255, 0.4)";
@@ -87,17 +89,41 @@ export default function CSVReader() {
     DEFAULT_REMOVE_HOVER_COLOR
   );
 
-  const [csvData, setCsvData] = useState<any>({});
+  const supabase = useSupabaseClient();
+  const [loading, setLoading] = useState(false);
 
+  const insertManyRows = async (dataArr: []) => {
+    const notification = toast.loading("UpLoading...");
+
+    try {
+      setLoading(true);
+
+      const { data, error } = await supabase
+        .from("sentences")
+        .insert(dataArr.map((sentence) => ({ incorrect_text: sentence[0] })));
+
+      console.log("data", data);
+      toast.success("UpLoaded!", {
+        id: notification
+      });
+    } catch (error) {
+      toast.error("mayre chudi", {
+        id: notification
+      });
+      console.log("error", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <CSVReader
       onUploadAccepted={(results: any) => {
         console.log("---------------------------");
-        console.log(results);
+        console.log(results.data);
         console.log("---------------------------");
         setZoneHover(false);
-        setCsvData(results.data);
+        insertManyRows(results.data);
       }}
       onDragOver={(event: DragEvent) => {
         event.preventDefault();
@@ -152,7 +178,7 @@ export default function CSVReader() {
                     <Remove color={removeHoverColor} />
                   </div>
                 </div>
-                <DisCsvData csvData={csvData} />
+                {/* <DisCsvData csvData={csvData} /> */}
               </>
             ) : (
               "Click to upload"
