@@ -8,7 +8,7 @@ function FileDownloader() {
   useEffect(() => {
     const getAll = async () => {
       try {
-        const { data, error } = await supabase.from("sentences").select("*");
+        const { data, error } = await supabase.from('sentences').select('*');
         setSentences(data as []);
         console.log("data", data);
         

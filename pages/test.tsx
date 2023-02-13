@@ -1,17 +1,37 @@
-const supabase = useSupabaseClient();
-const [loading, setLoading] = useState(false);
+import React, { useEffect, useState } from "react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
-const insertManyRows = async (dataArr: []) => {
-  try {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("sentences")
-      .insert(dataArr.map((sentence) => ({ incorrect_text: sentence[0] })));
+function test() {
+  const supabase = useSupabaseClient();
+  const [sentences, setSentences] = useState<[] | null>(null);
 
-    console.log("data", data);
-  } catch (error) {
-    console.log("error", error);
-  } finally {
-    setLoading(false);
-  }
-};
+  const [senCount, setSenCount] = useState<number>(0);
+
+  const patha = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select(`*, sentences(count)`);
+
+      setSenCount(data[0].sentences[0].count)
+      console.log("how many>", senCount);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center px-10">
+      <h1 className="my-10">patha</h1>
+
+      <button
+        className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4"
+        onClick={patha}
+      >
+        Send req{" "}
+      </button>
+    </div>
+  );
+}
+
+export default test;

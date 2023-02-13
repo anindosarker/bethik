@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import Dualdivs from "./Dualdivs";
 import { start } from "repl";
 import CorrectedText from "./CorrectedText";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import {
+  useSession,
+  useSessionContext,
+  useSupabaseClient,
+} from "@supabase/auth-helpers-react";
 import { newTextHandler } from "../Util/newTextHelper";
+import { Database } from "../../supabase";
 
-// const text =
-//   "আমার দেশের নাম, তুমি কি জানো?২০১৪ সা লের ৫ই জানু য়ারি র আগ পর্ যন্ত তাই ছিল অঘোষিত নিয়ম।";
+type SentenceType = Database["public"]["Tables"]["sentences"]["Row"][] | null;
 
 function TextSelection() {
+  // log the session
+  const session = useSession();
+  console.log("session", session);
+
   //states
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [selectedRange, setSelectedRange] = useState<
@@ -31,16 +39,21 @@ function TextSelection() {
   //TODO: queries
   //get one sentence from the database
   const supabase = useSupabaseClient();
-  const [text, setText] = useState("");
-  const [oneData, setOneData] = useState([]);
-  
+  const [text, setText] = useState<string | null>("");
+  const [oneData, setOneData] = useState<SentenceType | null>([]);
+
   const getOne = async () => {
     try {
-      const { data: getOneData, error } = await supabase
+      let getOneData: SentenceType = null;
+
+      const { data, error } = await supabase
         .from("sentences")
         .select("*")
         .limit(1)
         .eq("is_checked", false);
+
+      getOneData = data;
+
       setText(getOneData[0].incorrect_text);
       setOneData(getOneData[0]);
       console.log("OneData id", oneData.id);
@@ -49,6 +62,7 @@ function TextSelection() {
     }
   };
   useEffect(() => {
+    
     getOne();
   }, []);
 
@@ -61,7 +75,8 @@ function TextSelection() {
           incorrect_text: text,
           correct_text: newTextHandler(storedCorrections, text).newText,
           is_checked: true,
-          index: storedCorrections
+          index: storedCorrections,
+          email: session?.user?.email,
         })
         .eq("id", oneData.id);
       console.log("updateOneData", updateOneData);
