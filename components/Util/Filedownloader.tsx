@@ -19,7 +19,22 @@ function FileDownloader() {
 
   return (
     <div>
-      <pre>{JSON.stringify(sentences, null, 2)}</pre>
+      {!sentences ? (
+        <div>loading...</div>
+      ):(
+        sentences.map((sentence) => {
+          return (
+            <div className="space-y-4 flex-col" key={sentence.id}>
+              <p className="bg-red-100 rounded-full px-4 my-4">
+                {sentence.incorrect_text}
+              </p>
+              <p className="bg-green-100 rounded-full px-4">
+                {sentence.correct_text}
+              </p>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }
