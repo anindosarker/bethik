@@ -32,7 +32,7 @@ function FileDownloader() {
           <div className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4 max-w-min">
             <CSVDownloader jsonData={sentences} />
           </div>
-          
+
           <h1>Total {sentences.length} rows</h1>
 
           {sentences.map((sentence: SentenceType) => {
@@ -50,6 +50,8 @@ function FileDownloader() {
               </div>
             );
           })}
+
+          <pre>{JSON.stringify(sentences, null, 2)}</pre>
         </div>
       )}
     </div>

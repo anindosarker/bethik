@@ -8,9 +8,9 @@ export default function Header() {
   const session = useSession();
 
   return (
-    <>
+    <div className="sticky top-0 bg-white">
       <Head>
-        <title>Create Next App</title>
+        <title>Bethik</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {session && (
@@ -74,6 +74,6 @@ export default function Header() {
           </div>
         </header>
       )}
-    </>
+    </div>
   );
 }
