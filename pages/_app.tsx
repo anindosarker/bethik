@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Toaster />
       <Header />
-
       <Component {...pageProps} />
     </SessionContextProvider>
   );

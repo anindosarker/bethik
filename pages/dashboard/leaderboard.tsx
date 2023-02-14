@@ -6,7 +6,7 @@ import Table from "../../components/Util/Table";
 export default function leaderboard() {
   const supabase = useSupabaseClient();
 
-  const [profileData, setProfileData] = useState([]);
+  const [profileData, setProfileData] = useState<any[] | null>([]);
   const patha = async () => {
     try {
       const { data, error } = await supabase

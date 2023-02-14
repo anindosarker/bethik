@@ -89,35 +89,29 @@ export default function CSVReader() {
   );
 
   const supabase = useSupabaseClient();
-  const [loading, setLoading] = useState(false);
 
   const insertManyRows = async (dataArr: []) => {
     const notification = toast.loading("UpLoading...");
 
     try {
-      setLoading(true);
-
       const { data, error } = await supabase
         .from("sentences")
         .insert(dataArr.map((sentence) => ({ incorrect_text: sentence[0] })));
 
       toast.success("UpLoaded!", {
-        id: notification
+        id: notification,
       });
     } catch (error) {
       toast.error("mayre chudi", {
-        id: notification
+        id: notification,
       });
       console.log("error", error);
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <CSVReader
       onUploadAccepted={(results: any) => {
-       
         setZoneHover(false);
         insertManyRows(results.data);
       }}

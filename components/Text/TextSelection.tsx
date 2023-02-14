@@ -8,10 +8,9 @@ import {
   useSupabaseClient,
 } from "@supabase/auth-helpers-react";
 import { newTextHandler } from "../Util/newTextHelper";
-import { Database } from "../../supabase";
 import { useRouter } from "next/router";
-
-type SentenceType = Database["public"]["Tables"]["sentences"]["Row"][] | null;
+import { SentenceType, StoredCorrections } from "../../typings";
+import { toast } from "react-hot-toast";
 
 function TextSelection() {
   // log the session
@@ -29,34 +28,25 @@ function TextSelection() {
   >(undefined);
 
   const [storedCorrections, setStoredCorrections] = useState<
-    {
-      incorrectText: string;
-      correctedText: string;
-      start: number;
-      end: number;
-    }[]
+    StoredCorrections[]
   >([]);
 
   //TODO: queries
   //get one sentence from the database
   const supabase = useSupabaseClient();
-  const [text, setText] = useState<string | null>("");
-  const [oneData, setOneData] = useState<SentenceType | null>([]);
+  const [text, setText] = useState<SentenceType>(null);
 
   const getOne = async () => {
     try {
-      let getOneData: SentenceType = null;
-
       const { data, error } = await supabase
         .from("sentences")
         .select("*")
         .limit(1)
         .eq("is_checked", false);
 
-      getOneData = data;
-
-      setText(getOneData[0].incorrect_text);
-      setOneData(getOneData[0]);
+      if (data && data.length > 0) {
+        setText(data[0]);
+      }
     } catch (error) {
       console.log("error", error);
     }
@@ -67,20 +57,30 @@ function TextSelection() {
 
   //function to send data to the backend
   const sendData = async () => {
+    const notification = toast.loading("Sending...");
+
     try {
-      const { data: updateOneData, error } = await supabase
+      const { data, error } = await supabase
         .from("sentences")
         .update({
-          incorrect_text: text,
-          correct_text: newTextHandler(storedCorrections, text).newText,
+          incorrect_text: text?.incorrect_text,
+          correct_text: newTextHandler(storedCorrections, text?.incorrect_text)
+            .newText,
           is_checked: true,
           index: storedCorrections,
           email: session?.user?.email,
         })
-        .eq("id", oneData.id);
+        .eq("id", text?.id);
+
+      toast.success("UpLoaded!", {
+        id: notification,
+      });
 
       router.reload();
     } catch (error) {
+      toast.error("mayre chudi", {
+        id: notification,
+      });
       console.log("error", error);
     }
   };
@@ -113,7 +113,11 @@ function TextSelection() {
       start: start,
       end: end,
     });
-    setSelectedWords(text.split(" ").slice(start, end + 1));
+    setSelectedWords(
+      text && text.incorrect_text
+        ? text.incorrect_text.split(" ").slice(start, end + 1)
+        : []
+    );
   };
 
   const correctionHandler = (submittedText: any, incText: any) => {
@@ -158,7 +162,7 @@ function TextSelection() {
     <div className="flex flex-col items-center px-10">
       {/* Display Original Text */}
       <div className="text-xl">
-        {text.split(" ").map((word, index) => (
+        {text?.incorrect_text?.split(" ").map((word, index) => (
           <span
             key={index}
             className={`inline-block p-2 m-2 rounded ${highlightText(
@@ -178,7 +182,10 @@ function TextSelection() {
           correctionHandler={correctionHandler}
           resetHandler={divReset}
         />
-        <CorrectedText words={storedCorrections} originalText={text} />
+        <CorrectedText
+          words={storedCorrections}
+          originalText={text?.incorrect_text || ""}
+        />
       </div>
 
       <div className="text-xs mt-4">
@@ -199,8 +206,8 @@ function TextSelection() {
               fill="#2028F1"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
               fill="#2028F1"
             />

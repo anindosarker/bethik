@@ -17,7 +17,9 @@ const SentenceCount = () => {
         .select("*")
         .eq("id", session?.user?.id);
 
-      setCount(data[0].edit_count);
+      if (data) {
+        setCount(data[0].edit_count);
+      }
     } catch (error) {
       console.log("error", error);
     }

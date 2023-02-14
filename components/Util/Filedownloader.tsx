@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import JsonToCSV from "./JsonToCSV";
 import CSVDownloader from "./CSVDownloader";
+import { SentenceType } from "../../typings";
 
 function FileDownloader() {
   const supabase = useSupabaseClient();
-  const [sentences, setSentences] = useState<[] | null>(null);
+  const [sentences, setSentences] = useState<SentenceType[] | null>(null);
 
   useEffect(() => {
     const getAll = async () => {
@@ -14,7 +14,7 @@ function FileDownloader() {
           .from("sentences")
           .select("*")
           .eq("is_checked", true);
-        setSentences(data as []);
+        setSentences(data);
         console.log("sentences data", data);
       } catch (error) {
         console.log("error", error);
@@ -35,17 +35,17 @@ function FileDownloader() {
           
           <h1>Total {sentences.length} rows</h1>
 
-          {sentences.map((sentence) => {
+          {sentences.map((sentence: SentenceType) => {
             return (
               <div
                 className="flex-col p-2 border rounded-xl border-teal-500 my-4"
-                key={sentence.id}
+                key={sentence?.id}
               >
                 <p className="bg-red-100 rounded-full px-4">
-                  {sentence.incorrect_text}
+                  {sentence?.incorrect_text}
                 </p>
                 <p className="bg-green-100 rounded-full px-4">
-                  {sentence.correct_text}
+                  {sentence?.correct_text}
                 </p>
               </div>
             );
