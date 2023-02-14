@@ -12,7 +12,6 @@ export default function CSVDownloader({ jsonData }) {
     };
   });
 
-  console.log("filteredData", filteredData);
 
   return (
     <CSVDownloader

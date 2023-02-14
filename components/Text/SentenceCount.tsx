@@ -1,4 +1,4 @@
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import React, { useState, useEffect } from "react";
 
 type Props = {
@@ -7,15 +7,17 @@ type Props = {
 
 const SentenceCount = () => {
   const supabase = useSupabaseClient();
+  const session = useSession();
 
   const [count, setCount] = useState(0);
   const patha = async () => {
     try {
       const { data, error } = await supabase
         .from("profiles")
-        .select(`*, sentences(count)`);
+        .select("*")
+        .eq("id", session?.user?.id);
 
-      setCount(data[0].sentences[0].count);
+      setCount(data[0].edit_count);
     } catch (error) {
       console.log("error", error);
     }
@@ -28,7 +30,7 @@ const SentenceCount = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 right-0 bg-white rounded p-2 text-xs text-gray-800 shadow">
+    <div className="fixed top-20 right-0 bg-white rounded p-2 text-xs text-gray-800 shadow">
       <p className="font-medium">Total Sentences Corrected: {count}</p>
     </div>
   );

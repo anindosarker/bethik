@@ -141,8 +141,8 @@ export default function Sidebar() {
               </nav>
             </details>
 
-            <a
-              href="#"
+            <Link
+              href="/dashboard/leaderboard"
               className="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
             >
               <svg
@@ -161,7 +161,7 @@ export default function Sidebar() {
               </svg>
 
               <span className="ml-3 text-sm font-medium"> Leaderboard </span>
-            </a>
+            </Link>
 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">

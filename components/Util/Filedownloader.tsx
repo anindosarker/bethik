@@ -15,6 +15,8 @@ function FileDownloader() {
           .select("*")
           .eq("is_checked", true);
         setSentences(data as []);
+        console.log("sentences data", data);
+        
       } catch (error) {
         console.log("error", error);
       }
