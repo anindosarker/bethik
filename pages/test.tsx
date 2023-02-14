@@ -14,7 +14,6 @@ function test() {
         .select(`*, sentences(count)`);
 
       setSenCount(data[0].sentences[0].count)
-      console.log("how many>", senCount);
     } catch (error) {
       console.log("error", error);
     }

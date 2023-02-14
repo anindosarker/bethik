@@ -8,9 +8,6 @@ import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 const Home: NextPage = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
-  
-  console.log("session", session);
-  
 
   return (
     <div className="container flex mt-40 justify-center">

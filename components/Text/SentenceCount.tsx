@@ -16,7 +16,6 @@ const SentenceCount = () => {
         .select(`*, sentences(count)`);
 
       setCount(data[0].sentences[0].count);
-      console.log("how many>", count);
     } catch (error) {
       console.log("error", error);
     }

@@ -101,7 +101,6 @@ export default function CSVReader() {
         .from("sentences")
         .insert(dataArr.map((sentence) => ({ incorrect_text: sentence[0] })));
 
-      console.log("data", data);
       toast.success("UpLoaded!", {
         id: notification
       });
@@ -118,9 +117,7 @@ export default function CSVReader() {
   return (
     <CSVReader
       onUploadAccepted={(results: any) => {
-        console.log("---------------------------");
-        console.log(results.data);
-        console.log("---------------------------");
+       
         setZoneHover(false);
         insertManyRows(results.data);
       }}

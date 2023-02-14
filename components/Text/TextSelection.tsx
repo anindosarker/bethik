@@ -9,13 +9,14 @@ import {
 } from "@supabase/auth-helpers-react";
 import { newTextHandler } from "../Util/newTextHelper";
 import { Database } from "../../supabase";
+import { useRouter } from "next/router";
 
 type SentenceType = Database["public"]["Tables"]["sentences"]["Row"][] | null;
 
 function TextSelection() {
   // log the session
   const session = useSession();
-  console.log("session", session);
+  const router = useRouter();
 
   //states
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
@@ -56,7 +57,6 @@ function TextSelection() {
 
       setText(getOneData[0].incorrect_text);
       setOneData(getOneData[0]);
-      console.log("OneData id", oneData.id);
     } catch (error) {
       console.log("error", error);
     }
@@ -79,7 +79,8 @@ function TextSelection() {
           email: session?.user?.email,
         })
         .eq("id", oneData.id);
-      console.log("updateOneData", updateOneData);
+
+        router.reload();
     } catch (error) {
       console.log("error", error);
     }
