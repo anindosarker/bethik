@@ -16,7 +16,6 @@ function FileDownloader() {
           .eq("is_checked", true);
         setSentences(data as []);
         console.log("sentences data", data);
-        
       } catch (error) {
         console.log("error", error);
       }
@@ -30,6 +29,10 @@ function FileDownloader() {
         <div>loading...</div>
       ) : (
         <div>
+          <div className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4 max-w-min">
+            <CSVDownloader jsonData={sentences} />
+          </div>
+          
           <h1>Total {sentences.length} rows</h1>
 
           {sentences.map((sentence) => {
@@ -47,10 +50,6 @@ function FileDownloader() {
               </div>
             );
           })}
-
-          <div className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4 max-w-min">
-            <CSVDownloader jsonData={sentences} />
-          </div>
         </div>
       )}
     </div>

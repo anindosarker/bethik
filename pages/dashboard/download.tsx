@@ -9,7 +9,7 @@ export default function download() {
         <Sidebar />
       </div>
       <div className="container flex flex-col justify-center space-y-4 w-full col-span-5 items-center">
-        <h1 className="text-xl">Select * from database</h1>
+        <h1 className="text-xl">Showing annotated texts only</h1>
         <div>
           <FileDownloader />
         </div>

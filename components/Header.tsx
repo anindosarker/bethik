@@ -1,5 +1,6 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Head from "next/head";
+import Link from "next/link";
 import React from "react";
 
 export default function Header() {
@@ -21,48 +22,48 @@ export default function Header() {
                 <span className="h-10 w-20 rounded-lg bg-gray-200"></span>
               </a>
             </div>
-
-            <nav
-              aria-label="Site Nav"
-              className="hidden gap-8 text-sm font-medium md:flex"
-            >
-              <a className="text-gray-500" href="">
-                About
-              </a>
-              <a className="text-gray-500" href="">
-                Blog
-              </a>
-              <a className="text-gray-500" href="">
-                Projects
-              </a>
-              <a className="text-gray-500" href="">
-                Contact
-              </a>
-            </nav>
-
-            <div className="hidden flex-1 items-center justify-end gap-4 sm:flex">
-              <a
-                className="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500"
-                href=""
+            {session && (
+              <nav
+                aria-label="Site Nav"
+                className="hidden gap-8 text-sm font-medium md:flex"
               >
-                Log in
-              </a>
+                <Link className="text-gray-500" href="/">
+                  Home
+                </Link>
+                <Link className="text-gray-500" href="/dashboard">
+                  Dashboard
+                </Link>
+              </nav>
+            )}
 
-              <a
-                className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
-                href=""
-              >
-                Sign up
-              </a>
-              <button
-                className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4"
-                onClick={() => {
-                  supabase.auth.signOut();
-                }}
-              >
-                Log out{" "}
-              </button>
-            </div>
+            {!session ? (
+              <div className="hidden flex-1 items-center justify-end gap-4 sm:flex">
+                <a
+                  className="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500"
+                  href=""
+                >
+                  Log in
+                </a>
+
+                <a
+                  className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
+                  href=""
+                >
+                  Sign up
+                </a>
+              </div>
+            ) : (
+              <div className="hidden flex-1 items-center justify-end gap-4 sm:flex">
+                <button
+                  className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4"
+                  onClick={() => {
+                    supabase.auth.signOut();
+                  }}
+                >
+                  Log out{" "}
+                </button>
+              </div>
+            )}
 
             <div className="lg:hidden">
               <button

@@ -6,7 +6,6 @@ export default function Sidebar() {
     <div className="container">
       <div className="flex flex-col justify-between h-screen bg-white border-r">
         <div className="px-4 py-6">
-          <span className="block w-32 h-10 bg-gray-200 rounded-lg"></span>
 
           <nav aria-label="Main Nav" className="flex flex-col mt-6 space-y-1">
             <Link
@@ -55,7 +54,28 @@ export default function Sidebar() {
 
               <span className="ml-3 text-sm font-medium"> Download </span>
             </Link>
+            <Link
+              href="/dashboard/leaderboard"
+              className="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 opacity-75"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                />
+              </svg>
 
+              <span className="ml-3 text-sm font-medium"> Leaderboard </span>
+            </Link>
+{/* 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
                 <svg
@@ -140,28 +160,6 @@ export default function Sidebar() {
                 </a>
               </nav>
             </details>
-
-            <Link
-              href="/dashboard/leaderboard"
-              className="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 opacity-75"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                />
-              </svg>
-
-              <span className="ml-3 text-sm font-medium"> Leaderboard </span>
-            </Link>
 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
@@ -270,30 +268,11 @@ export default function Sidebar() {
                   </button>
                 </form>
               </nav>
-            </details>
+            </details> */}
           </nav>
         </div>
 
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
-          <a
-            href="#"
-            className="flex items-center p-4 bg-white shrink-0 hover:bg-gray-50"
-          >
-            <img
-              alt="Man"
-              src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              className="object-cover w-10 h-10 rounded-full"
-            />
-
-            <div className="ml-1.5">
-              <p className="text-xs">
-                <strong className="block font-medium">Eric Frusciante</strong>
-
-                <span> eric@frusciante.com </span>
-              </p>
-            </div>
-          </a>
-        </div>
+       
       </div>
     </div>
   );
