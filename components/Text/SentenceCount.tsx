@@ -32,8 +32,11 @@ const SentenceCount = () => {
   }, []);
 
   return (
-    <div className="fixed top-20 right-0 bg-white rounded p-2 text-xs text-gray-800 shadow">
-      <p className="font-medium">Total Sentences Corrected: {count}</p>
+    <div className="flex flex-col items-center fixed top-20 right-0 gap-4 rounded-lg border border-gray-100 bg-slate-100 shadow-sm shadow-gray-400 p-2">
+      <div className="">
+        <p className="text-2xl font-medium text-gray-900"> {count}</p>
+      </div>
+      <p className="text-sm text-gray-500">Total Contributions</p>
     </div>
   );
 };

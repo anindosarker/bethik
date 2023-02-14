@@ -163,7 +163,7 @@ function TextSelection() {
   };
 
   return (
-    <div className="flex flex-col items-center px-10">
+    <div className="px-10 container">
       {/* Display Original Text */}
       <div className="text-xl">
         {text?.incorrect_text?.split(" ").map((word, index) => (

@@ -14,7 +14,7 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
   }, [selectedText]);
 
   return (
-    <div className="flex flex-col  space-y-4">
+    <div className="container flex flex-col  space-y-4">
       <section className="flex justify-between items-center space-x-4">
         {/* Incorrect */}
         <div className="">Incorrect: </div>
