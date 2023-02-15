@@ -1,11 +1,14 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import Sidebar from "./Dash/Sidebar";
 
 export default function Header() {
   const supabase = useSupabaseClient();
   const session = useSession();
+
+  const [navbar, setNavbar] = useState(false);
 
   return (
     <div className="sticky top-0 bg-white shadow-lg z-10">
@@ -51,23 +54,49 @@ export default function Header() {
                 <button
                   className="rounded-lg bg-gray-100 p-2 text-gray-600"
                   type="button"
+                  onClick={() => {
+                    setNavbar(!navbar);
+                  }}
                 >
-                  <span className="sr-only">Open menu</span>
-                  <svg
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 6h16M4 12h16M4 18h16"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                    />
-                  </svg>
+                  {navbar ? (
+                    <div>
+                      <svg
+                        aria-hidden="true"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6 18L18 6M6 6l12 12"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                      <Sidebar />
+                    </div>
+                  ) : (
+                    <div>
+                      <svg
+                        aria-hidden="true"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M4 6h16M4 12h16M4 18h16"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                      <span className="sr-only">Open menu</span>
+                                          </div>
+                  )}
                 </button>
               </div>
             </div>

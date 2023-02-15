@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       initialSession={pageProps.initialSession}
     >
       <Toaster />
-      <div className="flex flex-col">
+      <div className="h-screen overflow-y-scroll">
         <Header />
         <Component {...pageProps} />
       </div>
