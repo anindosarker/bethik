@@ -20,26 +20,22 @@ export default function Header() {
         <header aria-label="Site Header" className="shadow-sm">
           <div className="mx-auto max-w-screen-xl p-4">
             <div className="flex items-center justify-between gap-4 lg:gap-10">
-              <div className="flex lg:w-0 lg:flex-1">
-                <a href="#">
-                  <span className="sr-only">Logo</span>
-                  <span className="h-10 w-20 rounded-lg bg-gray-200"></span>
-                </a>
-              </div>
-
               <nav
                 aria-label="Site Nav"
-                className="hidden gap-8 text-sm font-medium md:flex"
+                className="gap-8 text-sm font-medium flex"
               >
                 <Link className="text-gray-500" href="/">
                   Home
                 </Link>
-                <Link className="text-gray-500" href="/dashboard">
+                <Link
+                  className="text-gray-500 hidden md:inline"
+                  href="/dashboard"
+                >
                   Dashboard
                 </Link>
               </nav>
 
-              <div className="hidden flex-1 items-center justify-end gap-4 sm:flex">
+              <div className=" flex gap-4">
                 <button
                   className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4"
                   onClick={() => {
@@ -48,11 +44,10 @@ export default function Header() {
                 >
                   Log out{" "}
                 </button>
-              </div>
 
-              <div className="lg:hidden">
+                
                 <button
-                  className="rounded-lg bg-gray-100 p-2 text-gray-600"
+                  className="lg:hidden rounded-lg bg-gray-100 p-2 text-gray-600"
                   type="button"
                   onClick={() => {
                     setNavbar(!navbar);
@@ -75,7 +70,9 @@ export default function Header() {
                           strokeWidth="2"
                         />
                       </svg>
-                      <Sidebar />
+                      <div className="w-screen h-screen flex flex-col fixed top-16 left-0">
+                        <Sidebar />
+                      </div>
                     </div>
                   ) : (
                     <div>
@@ -95,7 +92,7 @@ export default function Header() {
                         />
                       </svg>
                       <span className="sr-only">Open menu</span>
-                                          </div>
+                    </div>
                   )}
                 </button>
               </div>

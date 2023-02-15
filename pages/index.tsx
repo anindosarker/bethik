@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const supabase = useSupabaseClient();
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center my-40 sm:w-1/2 sm:mx-auto">
       {!session ? (
         <Auth
           supabaseClient={supabase}

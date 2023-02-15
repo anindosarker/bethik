@@ -17,29 +17,34 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
     <div className="container flex flex-col  space-y-4">
       <section className="flex justify-between items-center space-x-4">
         {/* Incorrect */}
-        <div className="">Incorrect: </div>
 
         <div className="">
           {selectedText.length ? (
-            <div className="border-2 border-red-50 bg-red-50 whitespace-pre-wrap rounded-xl px-4 text-red-500">
-              {selectedText.join(" ")}
+            <div>
+              <div className="text-xs bg-red-200 rounded-t-xl w-fit p-2 shadow-md">
+                ভুল:{" "}
+              </div>
+              <div className="bg-red-50 whitespace-pre-wrap rounded-xl rounded-tl-none p-2 text-red-500 shadow-md">
+                {selectedText.join(" ")}
+              </div>
             </div>
           ) : (
-            <div className="text-sm text-gray-500">
-              "Select words by clicking"
+            <div>
+              <div className="text-xs rounded-xl w-fit p-2">ভুল: </div>
+              <div className="text-sm text-gray-500">
+                "Select words by clicking"
+              </div>
             </div>
           )}
         </div>
 
         <button
-          className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4"
+          className="flex items-center shadow-md bg-red-100 rounded-full text-red-500 py-2 text-sm px-4"
           onClick={() => {
             resetHandler();
             setInputValue("");
           }}
         >
-          {" "}
-          Clear selection
           <svg
             width="24"
             height="24"
@@ -48,32 +53,41 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M5.33936 4.46777H7.33936V7.02487C8.52937 6.08978 10.03 5.53207 11.6608 5.53207C15.5268 5.53207 18.6608 8.66608 18.6608 12.5321C18.6608 16.3981 15.5268 19.5321 11.6608 19.5321C9.51031 19.5321 7.58632 18.5623 6.30225 17.0363L7.92157 15.8515C8.83747 16.8825 10.1733 17.5321 11.6608 17.5321C14.4222 17.5321 16.6608 15.2935 16.6608 12.5321C16.6608 9.77065 14.4222 7.53207 11.6608 7.53207C10.574 7.53207 9.56811 7.87884 8.74785 8.46777L11.3394 8.46777V10.4678H5.33936V4.46777Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M17 5V4C17 2.89543 16.1046 2 15 2H9C7.89543 2 7 2.89543 7 4V5H4C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H5V18C5 19.6569 6.34315 21 8 21H16C17.6569 21 19 19.6569 19 18V7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H17ZM15 4H9V5H15V4ZM17 7H7V18C7 18.5523 7.44772 19 8 19H16C16.5523 19 17 18.5523 17 18V7Z"
               fill="#FF2E00"
             />
+
+            <path d="M9 9H11V17H9V9Z" fill="#FF2E00" />
+
+            <path d="M13 9H15V17H13V9Z" fill="#FF2E00" />
           </svg>
         </button>
       </section>
 
       <section className="flex justify-between items-center space-x-4">
         {/* Correct */}
-        <div className="">Correct: </div>
-        <input
-          className="border-2 border-green-500 bg-green-50 text-green-900 whitespace-pre-wrap rounded-xl px-2"
-          value={inputValue}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-          }}
-        />
+        <div className="w-1/2">
+          <div className="text-xs bg-green-500 rounded-t-xl w-fit p-2 shadow-md">
+            ঠিক টাইপ করুন:{" "}
+          </div>
+          <input
+            className="border border-green-500 bg-green-50 text-green-900 whitespace-pre-wrap rounded-xl rounded-tl-none p-2 shadow-md"
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
+        </div>
+
         <button
-          className="flex items-center bg-green-50 rounded-full text-green-800 py-2 text-sm px-4"
+          className="flex items-center shadow-md bg-green-200 rounded-full text-green-800 py-2 text-sm px-4"
           onClick={() => {
             correctionHandler(inputValue, selectedText?.join(" "));
             setInputValue("");
           }}
         >
-          {" "}
-          Add another
           <svg
             width="24"
             height="24"

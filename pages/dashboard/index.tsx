@@ -5,10 +5,10 @@ import CSVReader from "../../components/Util/CSVReader";
 export default function dashboard() {
   return (
     <div className="grid m-0 grid-cols-6 gap-4 h-screen">
-      <div className="row-span-full shadow-lg fixed">
+      <div className="row-span-full shadow-lg col-start-1 hidden md:inline">
         <Sidebar />
       </div>
-      <div className="container col-start-2 flex flex-col justify-center space-y-4 col-span-5 items-center">
+      <div className="container mt-5 row-span-full space-y-4 col-span-full md:col-span-5  px-4">
         <div className="">
           <CSVReader />
         </div>

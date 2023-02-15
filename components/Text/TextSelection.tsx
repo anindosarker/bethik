@@ -163,9 +163,9 @@ function TextSelection() {
   };
 
   return (
-    <div className="px-10 container">
+    <div className="px-10 container w-full text-sm sm:text-xl">
       {/* Display Original Text */}
-      <div className="text-xl">
+      <div className="text-sm sm:text-xl">
         {text?.incorrect_text?.split(" ").map((word, index) => (
           <span
             key={index}
@@ -241,7 +241,6 @@ function TextSelection() {
             />
           </svg>
         </button>
-
       </div>
     </div>
   );

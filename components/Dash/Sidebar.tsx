@@ -5,10 +5,7 @@ export default function Sidebar() {
   return (
     <div className="flex flex-col justify-between h-screen bg-white border-r sticky top-2 left-0">
       <div className="px-4 py-6">
-        <nav
-          aria-label="Main Nav"
-          className="flex flex-col mt-6 space-y-1 overflow-clip"
-        >
+        <nav aria-label="Main Nav" className="flex flex-col mt-6 space-y-1 overflow-clip">
           <Link
             href="/dashboard"
             className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg"
@@ -30,10 +27,7 @@ export default function Sidebar() {
               />
             </svg>
 
-            <span className="ml-3 text-sm font-medium hidden md:inline">
-              {" "}
-              Upload{" "}
-            </span>
+            <span className="ml-3 text-sm font-medium"> Upload </span>
           </Link>
           <Link
             href="/dashboard/download"
@@ -56,10 +50,7 @@ export default function Sidebar() {
               />
             </svg>
 
-            <span className="ml-3 text-sm font-medium hidden md:inline">
-              {" "}
-              Download{" "}
-            </span>
+            <span className="ml-3 text-sm font-medium"> Download </span>
           </Link>
           <Link
             href="/dashboard/leaderboard"
@@ -79,10 +70,8 @@ export default function Sidebar() {
                 d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
               />
             </svg>
-            <span className="ml-3 text-sm font-medium hidden md:inline">
-              {" "}
-              Leaderboard{" "}
-            </span>
+
+            <span className="ml-3 text-sm font-medium"> Leaderboard </span>
           </Link>
         </nav>
       </div>
