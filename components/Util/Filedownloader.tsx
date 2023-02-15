@@ -13,7 +13,7 @@ function FileDownloader() {
         const { data, error } = await supabase
           .from("sentences")
           .select("*")
-          .eq("is_checked", true);
+          // .eq("is_checked", true);
         setSentences(data);
         console.log("sentences data", data);
       } catch (error) {
@@ -29,7 +29,7 @@ function FileDownloader() {
         <div>loading...</div>
       ) : (
         <div>
-          <div className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4 max-w-min">
+          <div className="flex items-center bg-red-50 rounded-full text-red-500 py-2 text-sm px-4">
             <CSVDownloader jsonData={sentences} />
           </div>
 
@@ -38,7 +38,7 @@ function FileDownloader() {
           {sentences.map((sentence: SentenceType) => {
             return (
               <div
-                className="flex-col p-2 border rounded-xl border-teal-500 my-4"
+                className="flex-col p-2 border rounded-xl border-teal-500 my-40"
                 key={sentence?.id}
               >
                 <p className="bg-red-100 rounded-full px-4">

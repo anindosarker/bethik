@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col justify-between h-screen bg-white border-r">
+    <div className="flex flex-col justify-between h-screen bg-white border-r sticky top-2">
       <div className="px-4 py-6">
         <nav aria-label="Main Nav" className="flex flex-col mt-6 space-y-1">
           <Link

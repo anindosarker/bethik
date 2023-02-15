@@ -8,7 +8,7 @@ export default function Header() {
   const session = useSession();
 
   return (
-    <div className="sticky top-0 bg-white">
+    <div className="sticky top-0 bg-white shadow-lg">
       <Head>
         <title>Bethik</title>
         <link rel="icon" href="/favicon.ico" />

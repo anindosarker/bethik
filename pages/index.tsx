@@ -17,27 +17,17 @@ const Home: NextPage = () => {
           supabaseClient={supabase}
           providers={["google"]}
           appearance={{
-            theme: ThemeMinimal,
-            // variables: {
-            //   default: {
-            //     // fonts: {
-            //     //   bodyFontFamily: `ui-sans-serif, sans-serif`,
-            //     //   buttonFontFamily: `ui-sans-serif, sans-serif`,
-            //     //   inputFontFamily: `ui-sans-serif, sans-serif`,
-            //     //   labelFontFamily: `ui-sans-serif, sans-serif`,
-            //     // },
-            //   },
-            // },
-            // // className: {
-            // //   // container: "flex flex-col justify-center items-center flex-1",
-            // //   anchor: "text-white",
-            // //   divider: "max-w-xs border-black justify-center items-center",
-            // //   label: "",
-            // //   button: "max-w-xs bg-black text-white",
-            // //   input: "bg-white text-black",
-            // //   loader: "bg-white text-black",
-            // //   message: "bg-white text-black",
-            // // },
+            theme: ThemeSupa,
+            variables: {
+              default: {
+                fonts: {
+                  labelFontFamily: "Roboto",
+                  inputFontFamily: "Roboto",
+                  buttonFontFamily: "Roboto",
+                  bodyFontFamily: "Roboto",
+                },
+              },
+            },
           }}
           theme="dark"
         />
