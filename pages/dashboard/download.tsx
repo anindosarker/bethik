@@ -4,8 +4,8 @@ import FileDownloader from "../../components/Util/Filedownloader";
 
 export default function download() {
   return (
-    <div className="grid m-auto grid-cols-6 gap-4">
-      <div className="row-span-full col-start-1 shadow-lg ">
+    <div className="grid m-0 grid-cols-6 gap-4">
+      <div className="row-span-full shadow-lg fixed">
         <Sidebar />
       </div>
       <div className="container col-start-2 flex mt-5 flex-col justify-center space-y-4 col-span-5 items-center">

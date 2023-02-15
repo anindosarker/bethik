@@ -27,11 +27,11 @@ export default function leaderboard() {
   }, []);
 
   return (
-    <div className="grid m-auto grid-cols-6 gap-4">
-      <div className="container row-span-full">
+    <div className="grid m-0 grid-cols-6 gap-4 h-screen">
+      <div className="row-span-full shadow-lg fixed">
         <Sidebar />
       </div>
-      <div className="container flex flex-col justify-center space-y-4 w-full col-span-5 items-center">
+      <div className="container col-start-2 flex flex-col justify-center space-y-4 col-span-5 items-center">
         <h1 className="text-xl">Top Contributors</h1>
 
         <Table tableData={profileData} />
