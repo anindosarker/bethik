@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../components/Dash/Sidebar";
-import FileDownloader from "../../components/Util/Filedownloader";
+import FileDownloader from "../../components/Dash/Filedownloader";
 
 export default function download() {
   

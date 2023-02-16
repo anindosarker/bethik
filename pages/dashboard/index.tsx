@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../components/Dash/Sidebar";
-import CSVReader from "../../components/Util/CSVReader";
+import CSVReader from "../../components/Dash/CSVReader";
 
 export default function dashboard() {
   return (

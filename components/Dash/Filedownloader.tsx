@@ -38,7 +38,7 @@ function FileDownloader() {
           {sentences.map((sentence: SentenceType) => {
             return (
               <div
-                className="flex-col p-2 border rounded-xl border-teal-500 my-40"
+                className="flex-col p-2 space-y-4 border rounded-xl border-teal-500 my-40"
                 key={sentence?.id}
               >
                 <p className="bg-red-100 rounded-full px-4">
@@ -51,7 +51,6 @@ function FileDownloader() {
             );
           })}
 
-          <pre>{JSON.stringify(sentences, null, 2)}</pre>
         </div>
       )}
     </div>

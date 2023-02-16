@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Dash/Sidebar";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import Table from "../../components/Util/Table";
+import Table from "../../components/Dash/Table";
 
 export default function leaderboard() {
   const supabase = useSupabaseClient();
@@ -11,7 +11,8 @@ export default function leaderboard() {
     try {
       const { data, error } = await supabase
         .from("profiles")
-        .select(`*, sentences(count)`);
+        .select(`*, sentences(count)`)
+        .order("edit_count", { ascending: false });
 
       console.log("sentence count", data);
       setProfileData(data);

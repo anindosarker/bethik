@@ -4,7 +4,6 @@ type Props = {
   tableData: any[] | null;
 };
 
-
 export default function Table({ tableData }: Props) {
   return (
     <div className="overflow-x-auto rounded-lg border border-gray-200">
