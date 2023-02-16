@@ -1,182 +1,144 @@
 import React from "react";
-
-export default function TableCheckbox() {
+type Props = {
+  tableData: any[] | null;
+};
+export default function TableCheckbox({ tableData }: Props) {
   return (
     <div>
-      <section
-        className="antialiased bg-gray-100 text-gray-600 h-screen px-4"
-        x-data="app"
-      >
-        <div className="flex flex-col justify-center h-full">
-          <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header className="px-5 py-4 border-b border-gray-100">
-              <div className="font-semibold text-gray-800">Manage Carts</div>
-            </header>
-
-            <div className="overflow-x-auto p-3">
-              <table className="table-auto w-full">
-                <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                  <tr>
-                    <th></th>
-                    <th className="p-2">
-                      <div className="font-semibold text-left">
-                        Product Name
-                      </div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-left">Quantity</div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-left">Total</div>
-                    </th>
-                    <th className="p-2">
-                      <div className="font-semibold text-center">Action</div>
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody className="text-sm divide-y divide-gray-100">
-                  <tr>
-                    <td className="p-2">
-                      <input type="checkbox" className="w-5 h-5" value="id-1" />
-                    </td>
-                    <td className="p-2">
-                      <div className="font-medium text-gray-800">
-                        Samsung Galaxy Note 4
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <div className="text-left">1</div>
-                    </td>
-                    <td className="p-2">
-                      <div className="text-left font-medium text-green-500">
-                        RM 2,890.66
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <div className="flex justify-center">
-                        <button>
-                          <svg
-                            className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="p-2">
-                      <input type="checkbox" className="w-5 h-5" value="id-2" />
-                    </td>
-                    <td className="p-2">
-                      <div>
-                        <div className="font-medium text-gray-800">
-                          Logitech Keyboard
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <div className="text-left">1</div>
-                    </td>
-                    <td className="p-2">
-                      <div className="text-left font-medium text-green-500">
-                        RM 120.50
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <div className="flex justify-center">
-                        <button>
-                          <svg
-                            className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="p-2">
-                      <input type="checkbox" className="w-5 h-5" value="id-3" />
-                    </td>
-                    <td className="p-2">
-                      <div>
-                        <div className="font-medium text-gray-800">
-                          Earphone
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <div className="text-left">1</div>
-                    </td>
-                    <td className="p-2">
-                      <div className="text-left font-medium text-green-500">
-                        RM 15.00
-                      </div>
-                    </td>
-                    <td className="p-2">
-                      <div className="flex justify-center">
-                        <button>
-                          <svg
-                            className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="flex justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
-              <div>Total</div>
-              <div className="text-blue-600">
-                RM <span x-text="total.toFixed(2)"></span>
-              </div>
-            </div>
-
-            <div className="flex justify-end">
-              <input
-                type="hidden"
-                className="border border-black bg-gray-50"
-                x-model="selected"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+               Date
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Incorrect Text
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Correct Text
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData?.map((item) => (
+              <tr
+                key={item.id}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <td
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {new Date(item.created_at).toLocaleDateString()}
+                </td>
+                <td className="px-6 py-4">{item.incorrect_text} </td>
+                <td className="px-6 py-4">{item.correct_text} </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <nav
+          className="flex items-center justify-between pt-4"
+          aria-label="Table navigation"
+        >
+          <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+            Showing{" "}
+            <span className="font-semibold text-gray-900 dark:text-white">
+              1-10
+            </span>{" "}
+            of{" "}
+            <span className="font-semibold text-gray-900 dark:text-white">
+              1000
+            </span>
+          </span>
+          <ul className="inline-flex items-center -space-x-px">
+            <li>
+              <a
+                href="#"
+                className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span className="sr-only">Previous</span>
+                <svg
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                1
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                2
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                aria-current="page"
+                className="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+              >
+                3
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                ...
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                100
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span className="sr-only">Next</span>
+                <svg
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }

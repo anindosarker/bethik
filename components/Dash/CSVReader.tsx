@@ -101,6 +101,8 @@ export default function CSVReader() {
       toast.success("UpLoaded!", {
         id: notification,
       });
+      console.log("upload", data);
+      
     } catch (error) {
       toast.error("mayre chudi", {
         id: notification,
