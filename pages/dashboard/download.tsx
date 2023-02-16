@@ -20,7 +20,6 @@ export default function download() {
             <h1>Select Dates</h1>
 
             <div className="flex items-center">
-              <div className="">
                 <input
                   name="start"
                   type="date"
@@ -40,17 +39,16 @@ export default function download() {
                     setEnd(e.target.value);
                   }}
                 />
+            </div>
 
                 <button
                   className="flex items-center mt-10 bg-blue-50 rounded-full text-blue-500 py-2 text-sm px-4"
                   onClick={() => {
-                    setDataLoaded(true);
+                    start && end ? setDataLoaded(true) : setDataLoaded(false);
                   }}
                 >
                   Get the data{" "}
                 </button>
-              </div>
-            </div>
           </div>
         )}
       </div>

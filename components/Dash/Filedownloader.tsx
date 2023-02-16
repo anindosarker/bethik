@@ -19,10 +19,10 @@ function FileDownloader({ startDate, endDate }: Props) {
         const { data, error } = await supabase
           .from("sentences")
           .select("*")
-          // .eq("is_checked", true)
-          .limit(1000);
-        // .gte("created_at", startDate)
-        // .lte("created_at", endDate);
+          .eq("is_checked", true)
+          .limit(1000)
+          .gte("created_at", startDate)
+          .lte("created_at", endDate);
         setSentences(data);
       } catch (error) {
         console.log("error", error);
