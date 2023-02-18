@@ -8,7 +8,7 @@ export default function Sidebar() {
         <nav aria-label="Main Nav" className="flex flex-col mt-6 space-y-1 overflow-clip">
           <Link
             href="/dashboard"
-            className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg"
+            className="flex items-center px-4 py-2 text-gray-500 hover:bg-gray-100 rounded-lg"
           >
             <svg
               width="24"

@@ -12,7 +12,7 @@ function CorrectedText({ words, originalText }: Props) {
   const highlightText = (words: StoredCorrections[], word: string) => {
     for (let i = 0; i < words.length; i++) {
       if (words[i].correctedText === word) {
-        return "bg-yellow-100";
+        return "bg-yellow-100 p-1 px-2 rounded border border-yellow-400 ";
       }
     }
     return "";
