@@ -19,7 +19,7 @@ export default function CSVDownloader({ jsonData }: Props) {
   return (
     <CSVDownloader
       type={Type.Button}
-      filename={new Date(Date.now()).toLocaleDateString()}
+      filename={new Date(Date.now()).toLocaleString()}
       bom={true}
       data={filteredData}
     >

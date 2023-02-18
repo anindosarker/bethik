@@ -20,10 +20,10 @@ function FileDownloader({ startDate, endDate }: Props) {
           .from("sentences")
           .select("*")
           .eq("is_checked", true)
-          .limit(1000)
           .gte("created_at", startDate)
           .lte("created_at", endDate);
         setSentences(data);
+        console.log("sentences", data);
       } catch (error) {
         console.log("error", error);
       }

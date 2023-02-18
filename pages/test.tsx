@@ -1,17 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import React from "react";
 
-function test() {
-  const supabase = useSupabaseClient();
-  const [sentences, setSentences] = useState<[] | null>(null);
-
-
-
-  return (
-    <div>
-     zsg
-    </div>
-  );
+export default function test() {
+  return <div>test</div>;
 }
-
-export default test;
