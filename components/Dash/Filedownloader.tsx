@@ -3,7 +3,6 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import CSVDownloader from "./CSVDownloader";
 import { SentenceType } from "../../typings";
 import TableCheckbox from "./TableCheckbox";
-import Pagination from "../Util/Pagination";
 
 type Props = {
   startDate: string;
@@ -13,35 +12,47 @@ type Props = {
 function FileDownloader({ startDate, endDate }: Props) {
   const supabase = useSupabaseClient();
 
-  useEffect(() => {
-    const getAll = async () => {
-      try {
-        setLoading(true);
-        const { data, error } = await supabase
-          .from("sentences")
-          .select("*")
-          .order("id", { ascending: true });
-        // .eq("is_checked", true)
-        // .gte("created_at", startDate)
-        // .lte("created_at", endDate);
-        setPosts(data);
-        console.log("sentences", data);
-        setLoading(false);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    getAll();
-  }, []);
+  const getAll = async () => {
+    try {
+      setLoading(true);
+      const { data, count, error } = await supabase
+        .from("sentences")
+        .select("*", { count: "exact" })
+        .order("id", { ascending: true })
+        .range(indexOfFirstPost, indexOfLastPost);
+      // .eq("is_checked", true);
+      // .gte("created_at", startDate)
+      // .lte("created_at", endDate);
+
+      setPosts(data);
+      setTotalPosts(count as number);
+      console.log("total", totalPosts);
+
+      console.log("sentences", data);
+      console.log("count", count);
+
+      setLoading(false);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   const [posts, setPosts] = useState<SentenceType[] | null>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10000);
+  const [totalPosts, setTotalPosts] = useState(0);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts?.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = posts;
+
+  console.log("index", indexOfFirstPost, indexOfLastPost);
+  console.log("current", currentPosts);
+
+  useEffect(() => {
+    getAll();
+  }, [indexOfFirstPost, indexOfLastPost]);
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -64,7 +75,7 @@ function FileDownloader({ startDate, endDate }: Props) {
           <TableCheckbox
             tableData={currentPosts}
             postsPerPage={postsPerPage}
-            totalPosts={posts.length}
+            totalPosts={totalPosts || 0}
             currentPage={currentPage}
             paginate={paginate}
           />

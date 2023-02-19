@@ -3,7 +3,7 @@ import { useCSVDownloader } from "react-papaparse";
 import { SentenceType } from "../../typings";
 
 type Props = {
-  jsonData: SentenceType[] | null;
+  jsonData: SentenceType[] | undefined;
 };
 
 export default function CSVDownloader({ jsonData }: Props) {
