@@ -17,86 +17,84 @@ export default function TableCheckbox({
 }: Props) {
   return (
     <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <nav
-          className="flex items-center justify-between pt-4"
-          aria-label="Table navigation"
-        >
-          <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Showing{" "}
-            <span className="font-semibold text-gray-900">
-              {currentPage === 1
-                ? 1
-                : ((currentPage - 1) * postsPerPage + 1).toLocaleString()}{" "}
-              to {(currentPage * postsPerPage).toLocaleString()}
-            </span>{" "}
-            of{" "}
-            <span className="font-semibold text-gray-900">
-              {totalPosts.toLocaleString()}
-            </span>
+      <nav
+        className="flex flex-col md:flex-row items-center justify-between py-4 px-2"
+        aria-label="Table navigation"
+      >
+        <span className="text-sm font-normal text-gray-500 dark:text-gray-400 py-2">
+          Showing{" "}
+          <span className="font-semibold text-gray-900">
+            {currentPage === 1
+              ? 1
+              : ((currentPage - 1) * postsPerPage + 1).toLocaleString()}{" "}
+            to {(currentPage * postsPerPage).toLocaleString()}
+          </span>{" "}
+          of{" "}
+          <span className="font-semibold text-gray-900">
+            {totalPosts.toLocaleString()}
           </span>
-          <ul className="flex  items-center justify-between space-x-4">
-            <li>
-              <a
-                href="#"
-                onClick={() => {
-                  currentPage === 1 ? paginate(1) : paginate(currentPage - 1);
-                }}
-                className="block px-3 py-2 text-gray-500 bg-white rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        </span>
+        <ul className="flex items-center justify-between space-x-4">
+          <li>
+            <button
+              onClick={() => {
+                currentPage === 1 ? paginate(1) : paginate(currentPage - 1);
+              }}
+              className="block px-3 py-2 text-gray-500 bg-white rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <span className="sr-only">Previous</span>
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <span className="sr-only">Previous</span>
-                <svg
-                  className="w-5 h-5"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={totalPosts}
-                currentPage={currentPage}
-                paginate={paginate}
-              />
-            </li>
-            <li>
-              <a
-                href="#"
-                onClick={() => {
-                  //check currentpage is the last page
-                  currentPage === Math.ceil(totalPosts / postsPerPage)
-                    ? paginate(currentPage)
-                    : paginate(currentPage + 1);
-                }}
-                className="block px-3 py-2  text-gray-500 bg-white rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                <path
+                  fillRule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={totalPosts}
+              currentPage={currentPage}
+              paginate={paginate}
+            />
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                //check currentpage is the last page
+                currentPage === Math.ceil(totalPosts / postsPerPage)
+                  ? paginate(currentPage)
+                  : paginate(currentPage + 1);
+              }}
+              className="block px-3 py-2  text-gray-500 bg-white rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <span className="sr-only">Next</span>
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <span className="sr-only">Next</span>
-                <svg
-                  className="w-5 h-5"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </nav>
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div className="relative overflow-x-scroll shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>

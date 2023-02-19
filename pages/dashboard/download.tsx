@@ -12,7 +12,7 @@ export default function download() {
       <div className="row-span-full shadow-lg col-start-1 hidden md:inline">
         <Sidebar />
       </div>
-      <div className="container mt-5 row-span-full space-y-4 col-span-full md:col-span-5  px-4">
+      <div className="mt-5 row-span-full space-y-4 col-span-full md:col-span-5 px-4">
         <FileDownloader startDate={start} endDate={end} />
         {/* {dataLoaded ? (
           <FileDownloader startDate={start} endDate={end} />

@@ -3,6 +3,8 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import CSVDownloader from "./CSVDownloader";
 import { SentenceType } from "../../typings";
 import TableCheckbox from "./TableCheckbox";
+import { LineWobble, Metronome } from "@uiball/loaders";
+import { toast } from "react-hot-toast";
 
 type Props = {
   startDate: string;
@@ -13,6 +15,7 @@ function FileDownloader({ startDate, endDate }: Props) {
   const supabase = useSupabaseClient();
 
   const getAll = async () => {
+    const notification = toast.loading("Requesting from database...");
     try {
       setLoading(true);
       const { data, count, error } = await supabase
@@ -26,13 +29,15 @@ function FileDownloader({ startDate, endDate }: Props) {
 
       setPosts(data);
       setTotalPosts(count as number);
-      console.log("total", totalPosts);
-
-      console.log("sentences", data);
-      console.log("count", count);
 
       setLoading(false);
+      toast.success("Got it!", {
+        id: notification,
+      });
     } catch (error) {
+      toast.error("mayre chudi", {
+        id: notification,
+      });
       console.log("error", error);
     }
   };
@@ -47,9 +52,6 @@ function FileDownloader({ startDate, endDate }: Props) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts;
 
-  console.log("index", indexOfFirstPost, indexOfLastPost);
-  console.log("current", currentPosts);
-
   useEffect(() => {
     getAll();
   }, [indexOfFirstPost, indexOfLastPost]);
@@ -59,19 +61,24 @@ function FileDownloader({ startDate, endDate }: Props) {
   };
 
   return (
-    <div>
-      {loading ? (
-        <div>loading...</div>
-      ) : (
-        <div className="space-y-4">
-          <div className="flex justify-between px-2 items-center">
-            <CSVDownloader jsonData={currentPosts} />
-            <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
-              Only the rows showing in this page will be downloaded. (max 10,000
-              rows)
-            </p>
-          </div>
+    <div className="">
+      <div className="space-y-4">
+        <div className="flex flex-col md:flex-row justify-between px-2 items-center space-y-2 space-x-2">
+          <CSVDownloader jsonData={currentPosts} />
+          <p className="text-sm font-normal text-center text-gray-500 dark:text-gray-400">
+            Only the rows showing in this page will be downloaded. (max 10,000
+            rows)
+          </p>
+        </div>
 
+        {loading ? (
+          <div className="flex flex-col items-center justify-center mt-60">
+            <Metronome />
+            <h1 className="text-sm font-normal text-gray-500 dark:text-gray-400">
+              Please wait
+            </h1>
+          </div>
+        ) : (
           <TableCheckbox
             tableData={currentPosts}
             postsPerPage={postsPerPage}
@@ -79,8 +86,8 @@ function FileDownloader({ startDate, endDate }: Props) {
             currentPage={currentPage}
             paginate={paginate}
           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
