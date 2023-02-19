@@ -12,7 +12,7 @@ function CorrectedText({ words, originalText }: Props) {
   const highlightText = (words: StoredCorrections[], word: string) => {
     for (let i = 0; i < words.length; i++) {
       if (words[i].correctedText === word) {
-        return "bg-yellow-100 p-1 px-2 rounded border border-yellow-400 ";
+        return "bg-green-100 p-1 px-2 rounded ";
       }
     }
     return "";
@@ -23,7 +23,7 @@ function CorrectedText({ words, originalText }: Props) {
   return (
     <div className="container flex flex-col space-y-4 p-4 mt-10">
       <div className="text-xs text-gray-500">
-        Replaced words are highlighted in yellow
+        Replaced words are highlighted
       </div>
       <div className="font-semibold text-green-600 rounded-full ">
         {text?.split(" ").map((word: string, index: number) => (

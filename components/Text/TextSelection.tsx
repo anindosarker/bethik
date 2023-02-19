@@ -153,11 +153,11 @@ function TextSelection() {
         (correction) => correction.start <= index && correction.end >= index
       )
     ) {
-      return "border-2 border-green-200 shadow-md bg-green-50 text-green-600";
+      return "border border-green-200 shadow-md bg-green-50 text-green-600";
     } else if (selectedWords.includes(word)) {
-      return "border-2 border-red-200 shadow-md bg-red-50 text-red-500";
+      return "border border-red-200 shadow-md bg-red-50 text-red-500";
     } else {
-      return "border bg-gray-100 border-gray-400";
+      return "border border-gray-200";
     }
   };
 
@@ -168,7 +168,7 @@ function TextSelection() {
         {text?.incorrect_text?.split(" ").map((word, index) => (
           <span
             key={index}
-            className={`inline-block p-1 m-1 rounded hover:shadow-lg ${highlightText(
+            className={`inline-block p-1 m-1 rounded hover:shadow-lg shadow-sm ${highlightText(
               index,
               word
             )}`}
@@ -193,7 +193,7 @@ function TextSelection() {
 
       <div className="w-full flex justify-between text-xs mt-4">
         <button
-          className="flex hover:shadow-md items-center bg-gray-100 rounded-full py-2 text-sm px-4"
+          className="flex hover:shadow-lg shadow-md items-center bg-gray-100 rounded-full py-2 text-sm px-4"
           onClick={getOne}
         >
           Skip{" "}
@@ -218,7 +218,7 @@ function TextSelection() {
           </svg>
         </button>{" "}
         <button
-          className="flex hover:shadow-md items-center bg-orange-50 rounded-full text-orange-500 py-2 text-sm px-4"
+          className="flex hover:shadow-lg shadow-md bg-amber-50 rounded-full text-orange-500 py-2 text-sm px-4"
           onClick={() => {
             setStoredCorrections([]);
             divReset();
@@ -246,7 +246,7 @@ function TextSelection() {
           </svg>
         </button>
         <button
-          className="flex hover:shadow-md items-center bg-blue-50 rounded-full text-blue-500 py-2 text-sm px-4"
+          className="flex hover:shadow-lg shadow-md bg-blue-50 rounded-full text-blue-500 py-2 text-sm px-4"
           onClick={sendData}
         >
           Confirm{" "}

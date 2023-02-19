@@ -39,7 +39,7 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
         </div>
 
         <button
-          className="flex items-center hover:shadow-lg bg-red-100 rounded-full text-red-500 py-2 text-sm px-4"
+          className="flex items-center hover:shadow-lg shadow-md bg-red-100 rounded-full text-red-500 py-2 text-sm px-4"
           onClick={() => {
             resetHandler();
             setInputValue("");
@@ -83,7 +83,7 @@ function Dualdivs({ selectedText, correctionHandler, resetHandler }: Props) {
         </div>
 
         <button
-          className="flex items-center hover:shadow-lg bg-green-200 rounded-full text-green-800 py-2 text-sm px-4"
+          className="flex items-center hover:shadow-lg shadow-md bg-green-200 rounded-full text-green-800 py-2 text-sm px-4"
           onClick={() => {
             correctionHandler(inputValue, selectedText?.join(" "));
             setInputValue("");

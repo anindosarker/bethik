@@ -19,9 +19,9 @@ function FileDownloader({ startDate, endDate }: Props) {
         const { data, error } = await supabase
           .from("sentences")
           .select("*")
-          .eq("is_checked", true)
-          .gte("created_at", startDate)
-          .lte("created_at", endDate);
+          // .eq("is_checked", true)
+          // .gte("created_at", startDate)
+          // .lte("created_at", endDate);
         setSentences(data);
         console.log("sentences", data);
       } catch (error) {
