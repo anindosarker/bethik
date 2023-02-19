@@ -25,8 +25,8 @@ export default function Pagination({
   const pages = usePagination(totalPosts, currentPage, postsPerPage);
 
   return (
-    <nav>
-      <ul className="inline-flex items-center -space-x-px">
+    <nav className="">
+      <ul className="inline-flex items-center -space-x-px cursor-pointer">
         {pages.map((pageNumber, i) =>
           pageNumber === dotts ? (
             <span
@@ -44,9 +44,9 @@ export default function Pagination({
                 }}
                 className={`${
                   pageNumber === currentPage
-                    ? "text-blue-500 bg-blue-100"
+                    ? "text-blue-500 bg-blue-100 dark:text-blue-50"
                     : "text-black"
-                } flex rounded px-3 py-2 text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                } inline-flex m-1 rounded px-3 py-2 text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
               >
                 {pageNumber}
               </a>

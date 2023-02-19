@@ -17,7 +17,10 @@ function FileDownloader({ startDate, endDate }: Props) {
     const getAll = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase.from("sentences").select("*");
+        const { data, error } = await supabase
+          .from("sentences")
+          .select("*")
+          .order("id", { ascending: true });
         // .eq("is_checked", true)
         // .gte("created_at", startDate)
         // .lte("created_at", endDate);
@@ -34,7 +37,7 @@ function FileDownloader({ startDate, endDate }: Props) {
   const [posts, setPosts] = useState<SentenceType[] | null>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(1000);
+  const [postsPerPage, setPostsPerPage] = useState(10000);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -50,14 +53,14 @@ function FileDownloader({ startDate, endDate }: Props) {
         <div>loading...</div>
       ) : (
         <div className="space-y-4">
-          <div className="max-w-fit space-x-4 flex items-center border-2 border-blue-500 px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-500 hover:text-white">
-            <CSVDownloader jsonData={posts} />
+          <div className="flex justify-between px-2 items-center">
+            <CSVDownloader jsonData={currentPosts} />
+            <p className="text-sm font-normal text-gray-500 dark:text-gray-400">
+              Only the rows showing in this page will be downloaded. (max 10,000
+              rows)
+            </p>
           </div>
 
-          <h1 className="text-xl font-semibold px-2">
-            Showing {postsPerPage.toLocaleString()}/
-            {posts?.length.toLocaleString()} rows
-          </h1>
           <TableCheckbox
             tableData={currentPosts}
             postsPerPage={postsPerPage}

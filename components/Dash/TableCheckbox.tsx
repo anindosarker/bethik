@@ -24,25 +24,25 @@ export default function TableCheckbox({
         >
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
             Showing{" "}
-            <span className="font-semibold text-gray-900 dark:text-white">
+            <span className="font-semibold text-gray-900">
               {currentPage === 1
                 ? 1
                 : ((currentPage - 1) * postsPerPage + 1).toLocaleString()}{" "}
               to {(currentPage * postsPerPage).toLocaleString()}
             </span>{" "}
             of{" "}
-            <span className="font-semibold text-gray-900 dark:text-white">
+            <span className="font-semibold text-gray-900">
               {totalPosts.toLocaleString()}
             </span>
           </span>
-          <ul className="inline-flex items-center -space-x-px">
+          <ul className="flex  items-center justify-between space-x-4">
             <li>
               <a
                 href="#"
                 onClick={() => {
                   currentPage === 1 ? paginate(1) : paginate(currentPage - 1);
                 }}
-                className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="block px-3 py-2 text-gray-500 bg-white rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -77,7 +77,7 @@ export default function TableCheckbox({
                     ? paginate(currentPage)
                     : paginate(currentPage + 1);
                 }}
-                className="block px-3 py-2 leading-tight text-gray-500 bg-white rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="block px-3 py-2  text-gray-500 bg-white rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 <span className="sr-only">Next</span>
                 <svg
@@ -101,7 +101,7 @@ export default function TableCheckbox({
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Date
+                ID
               </th>
               <th scope="col" className="px-6 py-3">
                 Incorrect Text
@@ -112,7 +112,7 @@ export default function TableCheckbox({
             </tr>
           </thead>
           <tbody>
-            {tableData?.map((item: SentenceType) => (
+            {tableData?.map((item: SentenceType, index: number) => (
               <tr
                 key={item?.id}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -121,9 +121,7 @@ export default function TableCheckbox({
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {new Date(
-                    item?.created_at || Date.now()
-                  ).toLocaleDateString()}
+                  {item?.id}
                 </td>
                 <td className="px-6 py-4">{item?.incorrect_text} </td>
                 <td className="px-6 py-4">{item?.correct_text} </td>

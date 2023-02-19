@@ -23,7 +23,10 @@ export default function CSVDownloader({ jsonData }: Props) {
       bom={true}
       data={filteredData}
     >
+      <div className="max-w-fit font-semibold space-x-4 flex items-center border-2 border-blue-500 px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-500 hover:text-white">
+
       Download CSV
+      </div>
     </CSVDownloader>
   );
 }
