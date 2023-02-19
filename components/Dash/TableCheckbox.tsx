@@ -1,43 +1,23 @@
 import React from "react";
+import { SentenceType } from "../../typings";
+import Pagination from "../Util/Pagination";
 type Props = {
-  tableData: any[] | null;
+  tableData: SentenceType[] | null | undefined;
+  postsPerPage: number;
+  totalPosts: number;
+  currentPage: number;
+  paginate: (number: number) => void;
 };
-export default function TableCheckbox({ tableData }: Props) {
+export default function TableCheckbox({
+  tableData,
+  postsPerPage,
+  totalPosts,
+  currentPage,
+  paginate,
+}: Props) {
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Incorrect Text
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Correct Text
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData?.map((item) => (
-              <tr
-                key={item.id}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-              >
-                <td
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {new Date(item.created_at).toLocaleDateString()}
-                </td>
-                <td className="px-6 py-4">{item.incorrect_text} </td>
-                <td className="px-6 py-4">{item.correct_text} </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
         <nav
           className="flex items-center justify-between pt-4"
           aria-label="Table navigation"
@@ -45,18 +25,24 @@ export default function TableCheckbox({ tableData }: Props) {
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
             Showing{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
-              1-10
+              {currentPage === 1
+                ? 1
+                : ((currentPage - 1) * postsPerPage + 1).toLocaleString()}{" "}
+              to {(currentPage * postsPerPage).toLocaleString()}
             </span>{" "}
             of{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
-              1000
+              {totalPosts.toLocaleString()}
             </span>
           </span>
           <ul className="inline-flex items-center -space-x-px">
             <li>
               <a
                 href="#"
-                className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                onClick={() => {
+                  currentPage === 1 ? paginate(1) : paginate(currentPage - 1);
+                }}
+                className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -75,50 +61,23 @@ export default function TableCheckbox({ tableData }: Props) {
               </a>
             </li>
             <li>
-              <a
-                href="#"
-                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                1
-              </a>
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={totalPosts}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
             </li>
             <li>
               <a
                 href="#"
-                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                2
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                aria-current="page"
-                className="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-              >
-                3
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                ...
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                100
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                onClick={() => {
+                  //check currentpage is the last page
+                  currentPage === Math.ceil(totalPosts / postsPerPage)
+                    ? paginate(currentPage)
+                    : paginate(currentPage + 1);
+                }}
+                className="block px-3 py-2 leading-tight text-gray-500 bg-white rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 <span className="sr-only">Next</span>
                 <svg
@@ -138,6 +97,40 @@ export default function TableCheckbox({ tableData }: Props) {
             </li>
           </ul>
         </nav>
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Date
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Incorrect Text
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Correct Text
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData?.map((item: SentenceType) => (
+              <tr
+                key={item?.id}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <td
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {new Date(
+                    item?.created_at || Date.now()
+                  ).toLocaleDateString()}
+                </td>
+                <td className="px-6 py-4">{item?.incorrect_text} </td>
+                <td className="px-6 py-4">{item?.correct_text} </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

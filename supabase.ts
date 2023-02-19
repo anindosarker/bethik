@@ -37,7 +37,7 @@ export interface Database {
       }
       sentences: {
         Row: {
-          correct_text: string | null
+          correct_text: string
           created_at: string | null
           id: number
           incorrect_text: string | null
