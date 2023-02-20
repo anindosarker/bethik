@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 
-interface OriginalTextProps {
-  text: string;
-  handleClick: (index: number) => void;
+type Props = {
+  text: string | null | undefined;
   highlightText: (index: number, word: string) => string;
-}
+  handleClick: (index: number) => void;
+};
 
-const OriginalText: React.FC<OriginalTextProps> = ({
+export default function OriginalText({
   text,
-  handleClick,
   highlightText,
-}) => {
+  handleClick,
+}: Props) {
   return (
-    <div className="text-xl">
-      {text.split(" ").map((word, index) => (
+    <div className="text-sm sm:text-xl">
+      {text?.split(" ").map((word, index) => (
         <span
           key={index}
-          className={`inline-block p-2 m-2 rounded ${highlightText(
+          className={`inline-block p-1 m-1 rounded hover:shadow-lg shadow-sm ${highlightText(
             index,
             word
           )}`}
@@ -27,6 +27,4 @@ const OriginalText: React.FC<OriginalTextProps> = ({
       ))}
     </div>
   );
-};
-
-export default OriginalText;
+}

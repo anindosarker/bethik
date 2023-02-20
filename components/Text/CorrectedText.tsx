@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { newTextHandler } from "../Util/newTextHelper";
 import { Database } from "../../supabase";
 import { StoredCorrections } from "../../typings";
+import useNewText from "../hooks/useNewTextHelper";
 
 type Props = {
   words: StoredCorrections[];
@@ -18,7 +18,7 @@ function CorrectedText({ words, originalText }: Props) {
     return "";
   };
 
-  const text = newTextHandler(words, originalText).newTextHiglighted;
+  const text = useNewText(words, originalText).newTextHiglighted;
 
   return (
     <div className="container flex flex-col space-y-4 p-4 mt-10">
