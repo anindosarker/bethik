@@ -15,6 +15,10 @@ export default function Header() {
       <Head>
         <title>Bethik</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="google-site-verification"
+          content="3PYU8hegJ-eR9MrBIT8EqTXsk55Xwf7hGDeoIqKssok"
+        />
       </Head>
       {session && (
         <header aria-label="Site Header" className="shadow-sm">
@@ -45,7 +49,6 @@ export default function Header() {
                   Log out{" "}
                 </button>
 
-                
                 <button
                   className="lg:hidden rounded-lg bg-gray-100 p-2 text-gray-600"
                   type="button"

@@ -129,15 +129,15 @@ function TextSelection() {
     if (storedCorrections.some((c) => c.start <= index && c.end >= index)) {
       return;
     }
-      if (
-        selectedRange &&
-        index >= selectedRange.start &&
-        index <= selectedRange.end
-      ) {
-        setSelectedRange(undefined);
-        setSelectedWords([]);
-        return;
-      }
+    if (
+      selectedRange &&
+      index >= selectedRange.start &&
+      index <= selectedRange.end
+    ) {
+      setSelectedRange(undefined);
+      setSelectedWords([]);
+      return;
+    }
 
     if (start === undefined || end === undefined) {
       start = index;
@@ -188,9 +188,11 @@ function TextSelection() {
       )
     ) {
       return "border border-green-200 shadow-md bg-green-50 text-green-600";
-    } else if (selectedWords?.includes(word) && selectedRange
-      ? selectedRange.start <= index && selectedRange.end >= index
-      : false) {
+    } else if (
+      selectedWords?.includes(word) && selectedRange
+        ? selectedRange.start <= index && selectedRange.end >= index
+        : false
+    ) {
       return "border border-red-200 shadow-md bg-red-50 text-red-500";
     } else {
       return "border border-gray-200";
