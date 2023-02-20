@@ -13,6 +13,8 @@ function TextSelection() {
   const session = useSession();
   const router = useRouter();
 
+  console.log("session", session?.user?.email);
+
   //states
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [selectedRange, setSelectedRange] = useState<
@@ -200,13 +202,15 @@ function TextSelection() {
   };
 
   return (
-    <div className="px-10 container w-full text-sm sm:text-xl">
+    <div className="flex flex-col px-10 w-full text-sm sm:text-xl">
       {/* Display Original Text */}
-      <OriginalText
-        text={text?.incorrect_text}
-        highlightText={highlightText}
-        handleClick={handleClick}
-      />
+      <div className="container flex-grow">
+        <OriginalText
+          text={text?.incorrect_text}
+          highlightText={highlightText}
+          handleClick={handleClick}
+        />
+      </div>
 
       {/* Display clicked words */}
       <div className="container mt-4">

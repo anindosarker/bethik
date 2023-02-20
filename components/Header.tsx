@@ -3,6 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
 import Sidebar from "./Dash/Sidebar";
+import pencil from "../public/logo500c.png";
+import Image from "next/image";
 
 export default function Header() {
   const supabase = useSupabaseClient();
@@ -26,10 +28,14 @@ export default function Header() {
             <div className="flex items-center justify-between gap-4 lg:gap-10">
               <nav
                 aria-label="Site Nav"
-                className="gap-8 text-sm font-medium flex"
+                className="gap-8 text-sm font-medium flex items-center justify-between"
               >
                 <Link className="text-gray-500" href="/">
-                  Home
+                  <Image
+                    src={pencil}
+                    alt=""
+                    style={{ width: "100px", height: "auto" }}
+                  />
                 </Link>
                 <Link
                   className="text-gray-500 hidden md:inline"
