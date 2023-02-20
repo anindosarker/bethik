@@ -5,12 +5,11 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { SentenceType, StoredCorrections } from "../../typings";
 import { toast } from "react-hot-toast";
-import useNewText from "../hooks/useNewTextHelper";
+import useTextOutput from "../hooks/useTextOutput";
 import OriginalText from "./OriginalText";
 import Buttons from "./Buttons";
 
 function TextSelection() {
-  // log the session
   const session = useSession();
   const router = useRouter();
 
@@ -69,7 +68,7 @@ function TextSelection() {
         .from("sentences")
         .update({
           incorrect_text: text?.incorrect_text,
-          correct_text: useNewText(storedCorrections, text?.incorrect_text)
+          correct_text: useTextOutput(storedCorrections, text?.incorrect_text)
             .newText,
           is_checked: true,
           index: storedCorrections,
@@ -123,22 +122,45 @@ function TextSelection() {
     setStoredCorrections([]);
   };
 
-  //functions for Original text
   const handleClick = (index: number) => {
-    if (
-      storedCorrections.some(
-        (correction) => correction.start <= index && correction.end >= index
-      )
-    ) {
-      return;
-    }
-
     let start = selectedRange?.start;
     let end = selectedRange?.end;
+
+    if (storedCorrections.some((c) => c.start <= index && c.end >= index)) {
+      return;
+    }
+      if (
+        selectedRange &&
+        index >= selectedRange.start &&
+        index <= selectedRange.end
+      ) {
+        setSelectedRange(undefined);
+        setSelectedWords([]);
+        return;
+      }
+
     if (start === undefined || end === undefined) {
       start = index;
       end = index;
     } else {
+      if (index >= start && index <= end) {
+        // clicked within existing selection, do nothing
+        return;
+      }
+
+      // check for overlap with existing corrections
+      const overlaps = storedCorrections.some((c) => {
+        return (
+          (c.start >= start! && c.start <= index) ||
+          (c.end >= start! && c.end <= index) ||
+          (c.start <= start! && c.end >= index)
+        );
+      });
+
+      if (overlaps) {
+        return;
+      }
+
       end = index;
       if (start > end) {
         const temp = start;
@@ -146,10 +168,12 @@ function TextSelection() {
         end = temp;
       }
     }
+
     setSelectedRange({
       start: start,
       end: end,
     });
+
     setSelectedWords(
       text && text.incorrect_text
         ? text.incorrect_text.split(" ").slice(start, end + 1)
@@ -164,7 +188,9 @@ function TextSelection() {
       )
     ) {
       return "border border-green-200 shadow-md bg-green-50 text-green-600";
-    } else if (selectedWords.includes(word)) {
+    } else if (selectedWords?.includes(word) && selectedRange
+      ? selectedRange.start <= index && selectedRange.end >= index
+      : false) {
       return "border border-red-200 shadow-md bg-red-50 text-red-500";
     } else {
       return "border border-gray-200";
@@ -185,7 +211,6 @@ function TextSelection() {
         <Dualdivs
           selectedText={selectedWords}
           correctionHandler={correctionHandler}
-          resetHandler={divReset}
         />
         <CorrectedText
           words={storedCorrections}

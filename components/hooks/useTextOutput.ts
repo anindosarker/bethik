@@ -1,6 +1,6 @@
 import { StoredCorrections } from "../../typings";
 
-export default function useNewText(
+export default function useTextOutput(
   words: StoredCorrections[],
   originalText: any
 ) {
