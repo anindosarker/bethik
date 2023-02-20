@@ -12,7 +12,7 @@ export default function OriginalText({
   handleClick,
 }: Props) {
   return (
-    <div className="text-sm sm:text-xl">
+    <div className="text-sm sm:text-xl cursor-pointer">
       {text?.split(" ").map((word, index) => (
         <span
           key={index}

@@ -14,38 +14,33 @@ function Dualdivs({ selectedText, correctionHandler }: Props) {
 
   return (
     <div className="container flex flex-col  space-y-4">
-      <section className="flex justify-between items-center space-x-4">
-        {/* Incorrect */}
-
-        {selectedText.length ? (
-          <div>
-            <div className="text-xs bg-red-200 rounded-t-xl w-fit p-2 shadow-md">
-              ভুল:{" "}
-            </div>
+      {/* Incorrect */}
+      <section className="flex flex-col justify-between items-center w-full">
+        <div className="text-xs bg-red-400 font-semibold rounded-t-xl p-2 shadow-md w-full">
+          ভুল:{" "}
+        </div>
+        <div className="relative w-full">
+          {selectedText.length ? (
             <div className="bg-red-50 whitespace-pre-wrap rounded-xl rounded-tl-none p-2 text-red-500 shadow-md">
               {selectedText.join(" ")}
             </div>
-          </div>
-        ) : (
-          <div>
-            <div className="text-xs rounded-xl w-fit p-2">ভুল: </div>
-            <div className="text-sm text-gray-500">
+          ) : (
+            <div className="bg-red-50 whitespace-pre-wrap text-xs p-2 rounded-xl rounded-tl-none text-red-500 shadow-md">
               "Select words by clicking"
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </section>
 
+      {/* Correct */}
       <section className="flex flex-col justify-between items-center w-full">
-        {/* Correct */}
-        <div className="text-xs bg-green-500 rounded-t-xl p-2 shadow-md w-full">
+        <div className="text-xs bg-green-400 rounded-t-xl p-2 shadow-md w-full">
           ঠিক টাইপ করুন:{" "}
         </div>
         <div className="relative w-full">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"></div>
           <input
             type="text"
-            className="bg-green-50 border border-gray-300 text-green-900 whitespace-pre-wrap rounded-b-xl p-2 focus:ring-green-500 focus:border-green-500 block w-full pl-10 "
+            className="bg-green-50 border border-gray-300 text-green-900 whitespace-pre-wrap rounded-b-xl p-2 focus:ring-green-500 focus:border-green-500 block w-full "
             value={inputValue}
             onChange={(e) => {
               setInputValue(e.target.value);
@@ -53,7 +48,7 @@ function Dualdivs({ selectedText, correctionHandler }: Props) {
           />
           <button
             type="button"
-            className="absolute inset-y-0 right-0 flex items-center p-2 m-1 rounded-full bg-green-200"
+            className="absolute inset-y-0 right-0 flex items-center hover:shadow-md p-2 m-1 rounded-full bg-green-200"
             onClick={() => {
               correctionHandler(inputValue, selectedText?.join(" "));
               setInputValue("");
@@ -66,10 +61,17 @@ function Dualdivs({ selectedText, correctionHandler }: Props) {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
-                fill="#00672C"
-              />
+              <g clip-path="url(#clip0_17_19757)">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17 13H13V17H11V13H7V11H11V7H13V11H17V13Z"
+                  fill="#00880E"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_17_19757">
+                  <rect width="24" height="24" fill="white" />
+                </clipPath>
+              </defs>
             </svg>
           </button>
         </div>
