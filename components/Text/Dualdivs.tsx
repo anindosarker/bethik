@@ -61,7 +61,7 @@ function Dualdivs({ selectedText, correctionHandler }: Props) {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_17_19757)">
+              <g clipPath="url(#clip0_17_19757)">
                 <path
                   d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17 13H13V17H11V13H7V11H11V7H13V11H17V13Z"
                   fill="#00880E"

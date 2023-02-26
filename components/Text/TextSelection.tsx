@@ -68,8 +68,7 @@ function TextSelection() {
         .from("sentences")
         .update({
           incorrect_text: text?.incorrect_text,
-          correct_text: useTextOutput(storedCorrections, text?.incorrect_text)
-            .newText,
+          correct_text: useTextOutput(storedCorrections, text?.incorrect_text),
           is_checked: true,
           index: storedCorrections,
           email: session?.user?.email,
@@ -84,7 +83,7 @@ function TextSelection() {
       divReset();
       router.reload();
     } catch (error) {
-      toast.error("mayre chudi", {
+      toast.error("Something went brrrr", {
         id: notification,
       });
       console.log("error", error);

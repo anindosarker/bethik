@@ -35,6 +35,7 @@ export default function Header() {
                     src={pencil}
                     alt=""
                     style={{ width: "100px", height: "auto" }}
+                    priority = {true}
                   />
                 </Link>
                 <Link

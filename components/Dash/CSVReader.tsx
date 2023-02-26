@@ -102,9 +102,8 @@ export default function CSVReader() {
         id: notification,
       });
       console.log("upload", data);
-      
     } catch (error) {
-      toast.error("mayre chudi", {
+      toast.error("Something went brrrr", {
         id: notification,
       });
       console.log("error", error);
