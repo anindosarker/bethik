@@ -18,7 +18,8 @@ function CorrectedText({ words, originalText }: Props) {
     return "";
   };
 
-  const text = useTextOutput(words, originalText).newTextHiglighted;
+  const text = useTextOutput(words, originalText).newTextHighlighted;
+  const textOutput = useTextOutput(words, originalText).newText;
 
   return (
     <div className="container flex flex-col space-y-4 p-4 mt-10">
@@ -27,6 +28,16 @@ function CorrectedText({ words, originalText }: Props) {
       </div>
       <div className="font-semibold text-green-600 rounded-full ">
         {text?.split(" ").map((word: string, index: number) => (
+          <span
+            key={index}
+            className={`inline-block m-2 ${highlightText(words, word)}`}
+          >
+            {word}{" "}
+          </span>
+        ))}
+      </div>
+      <div className="font-semibold text-green-600 rounded-full ">
+        {textOutput?.split(" ").map((word: string, index: number) => (
           <span
             key={index}
             className={`inline-block m-2 ${highlightText(words, word)}`}

@@ -4,10 +4,10 @@ export default function useTextOutput(
   words: StoredCorrections[],
   originalText: any
 ) {
-  let newText = originalText;
-  let newTextHiglighted = originalText;
+  let newText: string = originalText;
+  let newTextHighlighted: string = originalText;
   words.forEach((word: any) => {
-    newTextHiglighted = newTextHiglighted?.replace(
+    newTextHighlighted = newTextHighlighted?.replace(
       word.incorrectText,
       word.correctedText
     );
@@ -16,5 +16,5 @@ export default function useTextOutput(
       `$${word.incorrectText}$\{${word.correctedText}\}`
     );
   });
-  return { newText, newTextHiglighted };
+  return { newText, newTextHighlighted };
 }

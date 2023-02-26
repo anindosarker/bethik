@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import TextSelection from "../components/Text/TextSelection";
 import SentenceCount from "../components/Text/SentenceCount";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Auth, ThemeMinimal, ThemeSupa } from "@supabase/auth-ui-react";
-import { ThemeVariables } from "@supabase/auth-ui-react/dist/esm/common/theming";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 
 const Home: NextPage = () => {
   const session = useSession();

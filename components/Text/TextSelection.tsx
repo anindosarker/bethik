@@ -13,8 +13,6 @@ function TextSelection() {
   const session = useSession();
   const router = useRouter();
 
-  console.log("session", session?.user?.email);
-
   //states
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [selectedRange, setSelectedRange] = useState<
