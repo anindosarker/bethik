@@ -18,7 +18,8 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-papaparse": "^4.1.0",
-    "react-range-slider-input": "^3.0.7"
+    "react-range-slider-input": "^3.0.7",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@types/node": "18.11.3",

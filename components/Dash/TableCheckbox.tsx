@@ -15,25 +15,47 @@ export default function TableCheckbox({
   currentPage,
   paginate,
 }: Props) {
+  const pageShow = () => {
+    if (totalPosts < 10000) {
+      return (
+        <span className="text-sm font-normal text-gray-500 dark:text-gray-400 py-2">
+          Showing{" "}
+          <span className="font-semibold text-gray-500">
+            1 to {totalPosts.toLocaleString()}
+          </span>{" "}
+          of total{" "}
+          <span className="font-semibold text-gray-500">
+            {totalPosts.toLocaleString()}
+          </span>{" "}
+          rows
+        </span>
+      );
+    } else {
+      return (
+        <span className="text-sm font-normal text-gray-500 dark:text-gray-400 py-2">
+          Showing{" "}
+          <span className="font-semibold text-gray-500">
+            {currentPage === 1
+              ? 1
+              : ((currentPage - 1) * postsPerPage + 1).toLocaleString()}{" "}
+            to {(currentPage * postsPerPage).toLocaleString()}
+          </span>{" "}
+          of total{" "}
+          <span className="font-semibold text-gray-500">
+            {totalPosts.toLocaleString()}
+          </span>{" "}
+          rows
+        </span>
+      );
+    }
+  };
   return (
     <div>
       <nav
         className="flex flex-col md:flex-row items-center justify-between py-4 px-2"
         aria-label="Table navigation"
       >
-        <span className="text-sm font-normal text-gray-500 dark:text-gray-400 py-2">
-          Showing{" "}
-          <span className="font-semibold text-gray-900">
-            {currentPage === 1
-              ? 1
-              : ((currentPage - 1) * postsPerPage + 1).toLocaleString()}{" "}
-            to {(currentPage * postsPerPage).toLocaleString()}
-          </span>{" "}
-          of{" "}
-          <span className="font-semibold text-gray-900">
-            {totalPosts.toLocaleString()}
-          </span>
-        </span>
+        {pageShow()}
         <ul className="flex items-center justify-between space-x-4">
           <li>
             <button

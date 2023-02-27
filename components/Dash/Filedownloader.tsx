@@ -22,8 +22,8 @@ function FileDownloader({ startDate, endDate }: Props) {
         .from("sentences")
         .select("*", { count: "exact" })
         .order("id", { ascending: true })
-        .range(indexOfFirstPost, indexOfLastPost);
-      // .eq("is_checked", true);
+        .range(indexOfFirstPost, indexOfLastPost)
+        .eq("is_checked", true);
       // .gte("created_at", startDate)
       // .lte("created_at", endDate);
 
