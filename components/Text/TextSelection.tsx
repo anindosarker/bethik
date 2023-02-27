@@ -33,17 +33,24 @@ function TextSelection() {
   const [skipped, setSkipped] = useState(false);
 
   const getOne = async () => {
-    const notification = toast.loading("Getting new one...");
+    const notification = toast.loading("Fetching a sentence...");
 
     try {
       const { data, error } = await supabase.rpc("select_random");
 
+      if (data.length === 0) {
+        toast("Found nothing", {
+          icon: "🥺",
+          id: notification,
+        });
+      }
+
       if (data && data.length > 0) {
         setText(data[0]);
+        toast.success("Refreshed a new sentence!", {
+          id: notification,
+        });
       }
-      toast.success("Refreshed a new sentence!", {
-        id: notification,
-      });
 
       setStoredCorrections([]);
       divReset();
