@@ -179,7 +179,6 @@ function TextSelection() {
       start: start,
       end: end,
     });
-
     setSelectedWords(
       text && text.incorrect_text
         ? text.incorrect_text.split(" ").slice(start, end + 1)

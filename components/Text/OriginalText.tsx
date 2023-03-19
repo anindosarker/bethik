@@ -11,9 +11,10 @@ export default function OriginalText({
   highlightText,
   handleClick,
 }: Props) {
+  const regex = /(\w+|[^\s\W])/g;
   return (
     <div className="text-sm sm:text-xl cursor-pointer">
-      {text?.split(" ").map((word, index) => (
+      {text?.split(regex).map((word, index) => (
         <span
           key={index}
           className={`inline-block p-1 m-1 rounded hover:shadow-lg shadow-sm ${highlightText(
@@ -25,6 +26,13 @@ export default function OriginalText({
           {word}{" "}
         </span>
       ))}
+
+      <pre>{JSON.stringify(text)}</pre>
+      split
+      <pre>{JSON.stringify(text)?.split(regex)}</pre>
+      <pre>
+        {JSON.stringify(text?.split(regex).filter((word) => word !== ""))}
+      </pre>
     </div>
   );
 }
