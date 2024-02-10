@@ -18,7 +18,7 @@ export default function WordButtons({
   return (
     <div className="flex flex-wrap flex-col gap-4">
       <div className="font-semibold">Click a word or phrase to edit</div>
-      <p className="flex flex-wrap items-center justify-start gap-2 border p-4 rounded">
+      <p className="flex flex-wrap items-center justify-start gap-2 p-4 rounded">
         {text?.split(regex).map((word, index, array) => (
           <span key={index} className="flex flex-wrap gap-2">
             {index !== 0 && (

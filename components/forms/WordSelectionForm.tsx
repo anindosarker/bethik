@@ -1,5 +1,5 @@
 import { dummyText } from "@/utils/data/dummyData";
-import { CheckIcon } from "lucide-react";
+import { CheckIcon, SkipForward } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
 import { Button } from "../ui/button";
@@ -15,6 +15,8 @@ import OutputDisplay2 from "./OutputDisplay2";
 import WordButtons from "./WordButtons";
 import WordEditFields, { FormSchema } from "./WordEditFields";
 import { Database } from "@/utils/types/database";
+import { cn } from "@/lib/utils";
+import { ResetIcon } from "@radix-ui/react-icons";
 
 type Props = {
   originalData: Database["public"]["Tables"]["sentences"]["Row"];
@@ -148,9 +150,12 @@ export function WordSelectionForm({ originalData }: Props) {
     console.log("storedCorrection", storedCorrections);
   };
   return (
-    <Card>
+    <Card className="w-1/2">
       <CardHeader>
-        <CardTitle>Original text</CardTitle>
+        <CardTitle>
+          Annotate this sentence. Try to find out grammatical erros, puncuation
+          error etc
+        </CardTitle>
         <CardDescription>{originalData.incorrect_text}</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
@@ -192,10 +197,10 @@ export function WordSelectionForm({ originalData }: Props) {
       </CardContent>
       <CardFooter className="flex gap-12 justify-between">
         <Button className="w-full" variant="secondary">
-          <CheckIcon className="mr-2 h-4 w-4" /> Skip
+          <SkipForward className="mr-2 h-4 w-4" /> Skip
         </Button>
         <Button className="w-full" variant="destructive">
-          <CheckIcon className="mr-2 h-4 w-4" /> Reset
+          <ResetIcon className="mr-2 h-4 w-4" /> Reset
         </Button>
         <Button className="w-full">
           <CheckIcon className="mr-2 h-4 w-4" /> Save changes

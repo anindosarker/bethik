@@ -3,6 +3,7 @@
 import { WordSelectionForm } from "@/components/forms/WordSelectionForm";
 import { createClient } from "@/utils/supabase/client";
 import { Database } from "@/utils/types/database";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -21,10 +22,13 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {originalSentence && (
+      {originalSentence ? (
         <WordSelectionForm originalData={originalSentence?.[0]} />
+      ) : (
+        <Loader2 className="animate-spin size-12" />
       )}
-      <pre>{JSON.stringify(originalSentence, null, 2)}</pre>
+
+      {/* <pre>{JSON.stringify(originalSentence, null, 2)}</pre> */}
     </main>
   );
 }

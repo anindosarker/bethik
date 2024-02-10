@@ -44,7 +44,24 @@ export default function OutputDisplay2({
           </div>
         ))}
       </div>
-      <p className="">{wordObjects.map((word) => word?.correct + " ")}</p>
+      <div className="table-auto">
+        <div className="table-row">
+          <div className="table-cell px-2 font-semibold text-sm">Before: </div>
+          <div className="table-cell px-2 text-red-600">{originalText}</div>
+        </div>
+        <div className="table-row">
+          <div className="table-cell px-2 font-semibold text-sm">After:</div>
+          <div className="table-cell px-2 text-green-600">
+            {wordObjects.map((word) => word?.correct + " ")}
+          </div>
+        </div>
+      </div>
+      {/* <div className="font-semibold text-sm">Before:</div>
+      <p className="text-red-600">{originalText}</p>
+      <div className="font-semibold text-sm">After:</div>
+      <p className="text-green-600">
+        {wordObjects.map((word) => word?.correct + " ")}
+      </p> */}
       <div className="font-semibold">Output Format</div>
       <p className="text-muted-foreground text-sm">{correctText}</p>
     </div>
