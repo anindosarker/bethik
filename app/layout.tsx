@@ -1,15 +1,9 @@
-import { GeistSans } from "geist/font/sans";
-import "./globals.css";
+import { Nav } from "@/components/Nav";
+import { ThemeProvider } from "@/context/theme-provider";
+import "@/styles/globals.css";
+import { Inter } from "next/font/google";
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
-export const metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
-};
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -17,11 +11,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
+    <html lang="en">
+      <head>
+        <link rel="shortcut icon" href="/bethik-ico.png" />
+        <title>Bethik</title>
+      </head>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Nav />
+
           {children}
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   );
