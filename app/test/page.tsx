@@ -9,7 +9,7 @@ export default function Page() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await supabase.from("sentences").select();
+      const { data } = await supabase.rpc("select_random");
       setNotes(data);
     };
     getData();

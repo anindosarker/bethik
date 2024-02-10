@@ -14,17 +14,13 @@ import {
 import OutputDisplay2 from "./OutputDisplay2";
 import WordButtons from "./WordButtons";
 import WordEditFields, { FormSchema } from "./WordEditFields";
+import { Database } from "@/utils/types/database";
 
-export function WordSelectionForm() {
-  const [originalData, setOriginalData] = useState<{
-    correct_text: string | null;
-    created_at: string | null;
-    id: number;
-    incorrect_text: string;
-    index: [] | null;
-    is_checked: boolean;
-  } | null>(dummyText);
+type Props = {
+  originalData: Database["public"]["Tables"]["sentences"]["Row"];
+};
 
+export function WordSelectionForm({ originalData }: Props) {
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [selectedRange, setSelectedRange] = useState<
     | {
@@ -154,8 +150,8 @@ export function WordSelectionForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Correction Form</CardTitle>
-        <CardDescription>Correct a sentence</CardDescription>
+        <CardTitle>Original text</CardTitle>
+        <CardDescription>{originalData.incorrect_text}</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         {originalData && (
@@ -178,14 +174,11 @@ export function WordSelectionForm() {
             </p>
             <div className="rounded bg-gray-300 h-6 w-1/2 mb-4"></div>
             <div className="rounded bg-gray-300 h-6 w-1/3 mb-4"></div>
-            <div className="rounded bg-gray-300 h-6 w-1/3 mb-4"></div>
+            {/* <div className="rounded bg-gray-300 h-6 w-1/3 mb-4"></div> */}
             <div className="rounded bg-gray-300 h-6 w-1/12"></div>
           </div>
         )}
-        {/* <OutputDisplay
-          words={storedCorrections}
-          originalText={originalData?.incorrect_text || ""}
-        /> */}
+
         <OutputDisplay2
           storedCorrections={storedCorrections}
           originalText={originalData?.incorrect_text || ""}

@@ -50,7 +50,7 @@ export type Database = {
           created_at: string | null
           email: string | null
           id: number
-          incorrect_text: string | null
+          incorrect_text: string
           index: Json[] | null
           is_checked: boolean
         }
@@ -59,7 +59,7 @@ export type Database = {
           created_at?: string | null
           email?: string | null
           id?: number
-          incorrect_text?: string | null
+          incorrect_text: string
           index?: Json[] | null
           is_checked?: boolean
         }
@@ -68,7 +68,7 @@ export type Database = {
           created_at?: string | null
           email?: string | null
           id?: number
-          incorrect_text?: string | null
+          incorrect_text?: string
           index?: Json[] | null
           is_checked?: boolean
         }
@@ -98,7 +98,7 @@ export type Database = {
           created_at: string | null
           email: string | null
           id: number
-          incorrect_text: string | null
+          incorrect_text: string
           index: Json[] | null
           is_checked: boolean
         }[]
@@ -110,7 +110,7 @@ export type Database = {
           created_at: string | null
           email: string | null
           id: number
-          incorrect_text: string | null
+          incorrect_text: string
           index: Json[] | null
           is_checked: boolean
         }[]
