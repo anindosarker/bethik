@@ -151,7 +151,7 @@ export default function WordEditFields({
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Fill in the punctuation error you found.
+                    Auto calculated. Change it if needed.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -185,14 +185,14 @@ export default function WordEditFields({
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Fill in the grammar error you found.
+                    What type of grammar error did you find?
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <FormField
+            {/* <FormField
               control={form.control}
               name="punctuation"
               rules={{ required: false }}
@@ -223,7 +223,7 @@ export default function WordEditFields({
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <FormField
               control={form.control}
